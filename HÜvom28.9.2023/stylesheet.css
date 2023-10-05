@@ -1,0 +1,14 @@
+body {
+    background-color: rgb(115, 182, 204);
+}
+
+h1 {
+    color: darkgreen;
+    text-align: center;
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+    text-indent: 100px;
+}
