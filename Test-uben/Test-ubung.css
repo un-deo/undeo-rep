@@ -1,0 +1,37 @@
+h1{
+    color: darkblue;
+    background-color: aquamarine;
+    text-align: center;
+}
+body{
+    background-color: aquamarine;
+}
+li {
+    list-style-type: square;
+    color: green;
+    font-size: 20px;
+}
+table, th, td, tr{
+    border: 1px dashed darkmagenta;
+    border-collapse: collapse;
+    border-radius: 5px;
+}
+th, td{
+    border-spacing: 50px;
+}
+button{
+    background-color: yellowgreen;
+    color: purple;
+    border-style: outset;
+    border-color: yellowgreen;
+}
+h2{
+    color: brown;
+    margin-left: 30px;
+}
+h3{
+    color: yellow;
+    background-color: darkblue;
+    margin: 0px;
+    padding: 0px;
+}

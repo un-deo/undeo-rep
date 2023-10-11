@@ -4,4 +4,6 @@
         box-sizing: border-box;
         font-family: 'poppins', sans-serif;
         background-image: url(background.jpg);
+        background-repeat: no-repeat;
+        background-size: 100%;
 }
