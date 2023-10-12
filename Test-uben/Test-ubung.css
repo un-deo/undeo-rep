@@ -5,6 +5,7 @@ h1{
 }
 body{
     background-color: aquamarine;
+    margin-left: 200px;
 }
 li {
     list-style-type: square;
@@ -20,10 +21,11 @@ th, td{
     border-spacing: 50px;
 }
 button{
-    background-color: yellowgreen;
+    background-color: aquamarine;
     color: purple;
     border-style: outset;
     border-color: yellowgreen;
+    border-radius: 12px;
 }
 h2{
     color: brown;
@@ -37,16 +39,19 @@ h3{
 }
 a:visited{
     color: tomato;
-    background-color: beige;
+    background-color: aquamarine;
     font-size: 10px;
 }
 a:link{
     color: rgb(237, 94, 94);
-    background-color:aliceblue;
+    background-color:aquamarine;
     font-size: 20px;
 }
 a:hover{
     color: black;
     background-color: black;
     font-size: 25px;
+}
+a{
+    background-color: aquamarine;
 }
