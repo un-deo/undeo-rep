@@ -35,3 +35,18 @@ h3{
     margin: 0px;
     padding: 0px;
 }
+a:visited{
+    color: tomato;
+    background-color: beige;
+    font-size: 10px;
+}
+a:link{
+    color: rgb(237, 94, 94);
+    background-color:aliceblue;
+    font-size: 20px;
+}
+a:hover{
+    color: black;
+    background-color: black;
+    font-size: 25px;
+}
