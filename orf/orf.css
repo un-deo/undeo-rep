@@ -1,0 +1,14 @@
+body{
+    background-color: #5286C1;
+}
+
+.navbar{
+    background-color: cornflowerblue;
+    padding: 5px 15px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 0px 10px;
+}
