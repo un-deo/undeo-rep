@@ -13,12 +13,14 @@ body{
     padding: 0px 10px;
 }
 .grid-container {
-        display: grid;
+    display: grid;
+    margin-left: 100px;  
+    margin-right: 430px;
     grid-template-columns: repeat(5, auto);
     grid-template-rows: repeat(2, auto);
     grid-template-areas: 
     "israel flieger flieger man scheich"
-    "israel kfz tisch tisch scheich";
+    "israel kfz tisch tisch scheich ";
 }
 .israel {
     grid-area: israel;
