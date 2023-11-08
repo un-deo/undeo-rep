@@ -83,6 +83,9 @@ body{
 a:visited{
     color: white;
 }
+a:link{
+    color: white;
+}
 .text{
     background-color: #5A8BC4;
     margin-left: 100px;
