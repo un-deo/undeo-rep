@@ -16,7 +16,7 @@ body{
     display: grid;
     margin-left: 100px;  
     margin-right: 95%;
-    grid-template-columns: 1fr auto auto auto 1fr;
+    grid-template-columns: auto auto auto auto auto;
     grid-template-rows: 150px 150px;
     grid-template-areas: 
     "israel flieger flieger man scheich"
