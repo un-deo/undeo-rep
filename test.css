@@ -3,3 +3,32 @@
     background-color: #4371A3;
 }
 
+.grid-container {
+    display: grid;
+    grid-template-columns: 75px 75px 75px;
+    grid-template-rows: 125px 125px 125px 125px 125px;
+    grid-template-areas: 
+    "b1 b1 b2 "
+    "b1 b1 b2"
+    "b3 b4 b2"
+    "b5 b5 b5"
+    "b6 b6 b6";
+}
+.b1 {
+    grid-area: b1;
+}
+.b2 {
+    grid-area: b2;
+}
+.b3 {
+    grid-area: b3;
+}
+.b4 {
+    grid-area: b4;
+}
+.b5 {
+    grid-area: b5;
+}
+.b6 {
+    grid-area: b6;
+}
