@@ -1,13 +1,16 @@
 class Person {
   constructor(name, gender, groesseM, gewichtKG) {
+    if (gender !== "m" && gender !== "f") {
+      throw new Error("Wrong gender");
+    }
     this.name = name;
     this.gender = gender;
     this.groesseM = groesseM;
     this.gewichtKG = gewichtKG;
-    if (gender !== "m" && gender !== "f") {
-      throw new Error("Wrong gender");
-    }
+    
   }
+
+  
   groesseCM() {
     return this.groesseM * 100;
   }
@@ -15,13 +18,11 @@ class Person {
   vorName() {
     const names = this.name.split(" ");
     return names[0];
-    return this.name.split(" ", 1)[0];
   }
 
   nachName() {
     const names = this.name.split(" ");
     return names.slice(1).join(" ");
-    return this.name.split(" ")[1];
   }
 
   toString() {
@@ -30,8 +31,7 @@ class Person {
 
   getBmi() {
     const bmi = this.gewichtKG / this.groesseM ** 2;
-    return parseFloat(bmi.toFixed(2));
-    return this.gewichtKG / Math.pow(this.groesseM, 2);
+    return bmi;
   }
 
   getGewichtType() {
