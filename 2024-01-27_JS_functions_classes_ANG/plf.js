@@ -35,16 +35,16 @@ class Person {
   }
 
   getGewichtType() {
-    const bmi = this.getBmi();
-    if (this.gender === "f" && bmi >= 19 && bmi <= 24) {
+    const bmi2 = this.getBmi();
+    if (this.gender === "f" && bmi2 >= 19 && bmi2 <= 24) {
       return "Normalgewicht";
-    } else if (this.gender === "m" && bmi >= 20 && bmi <= 25) {
+    } else if (this.gender === "m" && bmi2 >= 20 && bmi2 <= 25) {
       return "Normalgewicht";
-    } else if (bmi < 19) {
+    } else if (bmi2 < 19) {
       return "Untergewicht";
     } else {
       return "Übergewicht";
     }
   }
 }
-export { Person };
+export { Person }; 
