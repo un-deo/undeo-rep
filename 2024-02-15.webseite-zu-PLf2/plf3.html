@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PLF3</title>
     <link rel="stylesheet" href="plf3.css">
-    <script src="plf3-1.js"></script>
+    <script src="plf3-1.js" defer></script>
 </head>
 <body>
     <h1 style="text-align: center;">Create a Person here</h1>
     <h3>Enter Information</h3>
     <br>Name (First / last)
     <br>
-    <input type="text"; id="name">
+    <input type="text"; id="name" placeholder="First and last name">
     <br>
     <br>Gender
     <br>
@@ -23,10 +23,11 @@
     <br>
     <br>height in meters
     <br>
-    <input type="text"; id="height">
+    <input type="number"; id="height" placeholder="(please use a komma)">
+    <br>
     <br>weight in Kg
     <br>
-    <input type="text"; id="weight">
+    <input type="number"; id="weight" placeholder="weight">
     <br>
     <button class="generator">Generete Person</button>
     <br>

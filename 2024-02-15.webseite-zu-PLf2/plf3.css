@@ -1,5 +1,7 @@
 body {
     background-color: powderblue;
+    display: inline-flexbox;
+    flex-direction: column;
 }
 h1{
     font-family: fantasy;
