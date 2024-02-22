@@ -9,7 +9,8 @@ class Person {
     this.gewichtKG = gewichtKG;
   }
 
-  
+    
+
   groesseCM() {
     return this.groesseM * 100;
   }
@@ -33,6 +34,8 @@ class Person {
     return bmi;
   }
 
+  
+
   getGewichtType() {
     const bmi2 = this.getBmi();
     if (this.gender === "female" && bmi2 >= 19 && bmi2 <= 24) {
@@ -46,6 +49,8 @@ class Person {
     }
   }
 }
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const button = document.querySelector(".generator");
