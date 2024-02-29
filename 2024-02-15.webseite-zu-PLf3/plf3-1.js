@@ -9,7 +9,8 @@ class Person {
     this.gewichtKG = gewichtKG;
   }
 
-    
+
+  
 
   groesseCM() {
     return this.groesseM * 100;
@@ -62,7 +63,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const height = parseFloat(document.getElementById("height").value);
         const weight = parseFloat(document.getElementById("weight").value);
 
-        try {
+      try {
+          
+        if (height < 0 || weight < 0 || isNaN(height) || isNaN(weight)) {
+        throw new Error(alert("Please check if all values are correct"))
+        }
             const person = new Person(name, gender, height, weight);
             const bmi = person.getBmi();
             const weightType = person.getGewichtType();
@@ -71,16 +76,16 @@ document.addEventListener("DOMContentLoaded", function () {
             output.textContent = outputText;
 
             
-            if (weightType === "Normalgewicht") {
+            if (weightType === "Normalgewichtig") {
                 output.style.color = "darkgreen";
-            } else if (weightType === "Übergewicht") {
+            } else if (weightType === "Übergewichtig") {
                 output.style.color = "red";
-            } else if (weightType === "Untergewicht") {
+            } else if (weightType === "Untergewichtig") {
                 output.style.color = "orange";
             }
         } catch (error) {
             output.textContent = "Error: " + error.message;
-            output.style.color = "black"; 
+            //output.style.color = "black"; 
         }
     });
 });
