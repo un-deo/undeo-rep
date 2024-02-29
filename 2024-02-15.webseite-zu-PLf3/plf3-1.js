@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         } catch (error) {
             output.textContent = "Error: " + error.message;
-            //output.style.color = "black"; 
+            output.style.color = "black"; 
         }
     });
 });
