@@ -1,11 +1,15 @@
 function fib(n) { 
-    let arr = [0, 1];
+    const arr = [0, 1];
     for (let i = 0; i < n; i++) { 
-        arr.push(arr.at(-1) + arr.at(-2));
+        arr.push(arr.at(-1) + arr.at(-2))
     }
     console.log(arr[n]);
 }
 
-fib(200);
+fib(7)
+fib(8)
+fib(21)
+fib(3)
+fib(40)
 
-console.log("end")
+console.log("Breakpoint")
