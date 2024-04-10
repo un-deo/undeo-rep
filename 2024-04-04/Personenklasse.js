@@ -89,6 +89,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+//Prevoius code!
+
 //class Person {
 //  constructor(name, gender, groesseM, gewichtKG) {
 //    if (gender !== "male" && gender !== "female") {
@@ -123,6 +125,8 @@ document.addEventListener("DOMContentLoaded", function () {
 //    return bmi;
 //  }
 //
+//
+//
 //  getGewichtType() {
 //    const bmi2 = this.getBmi();
 //    if (this.gender === "female" && bmi2 >= 19 && bmi2 <= 24) {
@@ -137,39 +141,42 @@ document.addEventListener("DOMContentLoaded", function () {
 //  }
 //}
 //
+//
+//
 //document.addEventListener("DOMContentLoaded", function () {
-//  const button = document.querySelector(".generator");
-//  const output = document.getElementById("output");
+//    const button = document.querySelector(".generator");
+//    const output = document.getElementById("output");
 //
-//  button.addEventListener("click", function () {
-//    const name = document.getElementById("name").value;
-//    const gender = document.getElementById("gender").value;
-//    const height = parseFloat(document.getElementById("height").value);
-//    const weight = parseFloat(document.getElementById("weight").value);
+//    button.addEventListener("click", function () {
+//        const name = document.getElementById("name").value;
+//        const gender = document.getElementById("gender").value;
+//        const height = parseFloat(document.getElementById("height").value);
+//        const weight = parseFloat(document.getElementById("weight").value);
 //
-//    try {
-//      if (height < 0 || weight < 0 || isNaN(height) || isNaN(weight)) {
-//        throw new Error(alert("Please check if all values are correct"));
-//      }
-//      const person = new Person(name, gender, height, weight);
-//      const bmi = person.getBmi();
-//      const weightType = person.getGewichtType();
+//      try {
 //
-//      let outputText = `${person.toString()} hat einen BMI von ${bmi.toFixed(
-//        2
-//      )}, und ist ${weightType}`;
-//      output.textContent = outputText;
+//        if (height < 0 || weight < 0 || isNaN(height) || isNaN(weight)) {
+//        throw new Error(alert("Please check if all values are correct"))
+//        }
+//            const person = new Person(name, gender, height, weight);
+//            const bmi = person.getBmi();
+//            const weightType = person.getGewichtType();
 //
-//      if (weightType === "Normalgewichtig") {
-//        output.style.color = "darkgreen";
-//      } else if (weightType === "Übergewichtig") {
-//        output.style.color = "red";
-//      } else if (weightType === "Untergewichtig") {
-//        output.style.color = "orange";
-//      }
-//    } catch (error) {
-//      output.textContent = "Error: " + error.message;
-//      output.style.color = "black";
-//    }
-//  });
+//            let outputText = `${person.toString()} hat einen BMI von ${bmi.toFixed(2)}, und ist ${weightType}`;
+//            output.textContent = outputText;
+//
+//
+//            if (weightType === "Normalgewichtig") {
+//                output.style.color = "darkgreen";
+//            } else if (weightType === "Übergewichtig") {
+//                output.style.color = "red";
+//            } else if (weightType === "Untergewichtig") {
+//                output.style.color = "orange";
+//            }
+//        } catch (error) {
+//            output.textContent = "Error: " + error.message;
+//            output.style.color = "black";
+//        }
+//    });
 //});
+//
