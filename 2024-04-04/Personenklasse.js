@@ -89,9 +89,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-const mensch1 = new Person("Viktor Demirchev", "m", 1.66, 52);
-const Physiker = new Person("Albrecht Einstein", "m", 1.8, 72);
-const Mensch3 = new Person("Isaac Newton", "m", 1.7, 58);
+const mensch1 = new Person("Viktor Demirchev", "m", 1.86, 89);
+const Physiker = new Person("Albrecht Einstein", "m", 1.6, 65);
+const Mensch3 = new Person("Isaac Newton", "m", 1.7, 54);
 
 console.log(mensch1.vorName());
 console.log(mensch1.nachName());
