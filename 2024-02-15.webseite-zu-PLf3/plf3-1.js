@@ -89,6 +89,28 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+const mensch1 = new Person("Viktor Demirchev", "m", 1.86, 89);
+const Physiker = new Person("Albrecht Einstein", "m", 1.6, 65);
+const Mensch3 = new Person("Isaac Newton", "m", 1.7, 54);
+
+console.log(mensch1.vorName());
+console.log(mensch1.nachName());
+console.log(mensch1.getGewichtType());
+console.log(mensch1.toString());
+console.log(mensch1.getBmi());
+
+console.log(Physiker.vorName());
+console.log(Physiker.getGewichtType());
+console.log(Physiker.nachName());
+console.log(Physiker.getBmi());
+console.log(Physiker.toString());
+
+console.log(Mensch3.toString());
+console.log(Mensch3.nachName());
+console.log(Mensch3.getGewichtType());
+console.log(Mensch3.vorName());
+console.log(Mensch3.getBmi());
+
 //class Person {
 //  constructor(name, gender, groesseM, gewichtKG) {
 //    if (gender !== "male" && gender !== "female") {
