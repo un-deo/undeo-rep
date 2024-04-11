@@ -1,5 +1,3 @@
-const { fakerDE } = require("@faker-js/faker");
-
 class Person {
   #name;
   #gender;
@@ -12,7 +10,7 @@ class Person {
     this.#groesseM = groesseM;
     this.#gewichtKG = gewichtKG;
 
-    if (this.#gender !== "m" && this.#gender !== "f") {
+    if (this.#gender !== "male" && this.#gender !== "female") {
       throw new Error("Wrong gender");
     }
   }
@@ -42,9 +40,9 @@ class Person {
 
   getGewichtType() {
     const bmi2 = this.getBmi();
-    if (this.#gender === "f" && bmi2 >= 19 && bmi2 <= 24) {
+    if (this.#gender === "female" && bmi2 >= 19 && bmi2 <= 24) {
       return "Normalgewichtig";
-    } else if (this.#gender === "m" && bmi2 >= 20 && bmi2 <= 25) {
+    } else if (this.#gender === "male" && bmi2 >= 20 && bmi2 <= 25) {
       return "Normalgewichtig";
     } else if (bmi2 < 19) {
       return "Untergewichtig";
