@@ -234,7 +234,6 @@ class Kassa {
     geld in der Kassa: ${this.#geldLade + this.preis()}`;
   }
 }
+console.log("break");
 const kassa = new Kassa(15, 3000, 1, 1, 1, 1, 1);
 console.log(kassa.rechnung());
-
-console.log("break");
