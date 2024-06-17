@@ -1,0 +1,16 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 45% 45%;
+    grid-template-rows: 25% 70%;
+    grid-gap: 10px;
+    margin-bottom: 100%;
+}
+.grid-item {
+    background-color: #f2f2f2;
+    padding: 20px;
+    text-align: center;
+}
+
+.top-grid {
+    grid-column: 1 / span 2;
+}

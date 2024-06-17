@@ -3,14 +3,10 @@ let option1 = document.getElementById("option1");
 let option2 = document.getElementById("option2");
 let option3 = document.getElementById("option3");
 let option4 = document.getElementById("option4");
-let mission = 1;
-let mission2 = 1;
-let mission3 = 1;
-let haveascrewdriver = undefined;
-let brokenleg = false;
-let triedTounhingeDoor = false;
-let foundNote = false;
+let items = document.getElementById("items");
+let haveascrewdriver = false;
 let openedVent = false;
+let haveacrowbar = false;
 
 function start() {
   option1.innerText = "Try to kick in the door.";
@@ -18,76 +14,86 @@ function start() {
   option3.innerText = "Try and open the Ventilation shaft";
   option4.innerText = "Give Up";
   haveascrewdriver = false;
-  mission = 1;
-  mission2 = 1;
-  mission3 = 1;
-  triedTounhingeDoor = false;
-  foundNote = false;
   openedVent = false;
-  triedTounhingeDoor = false;
+  haveacrowbar = false;
 }
 
 start();
 
 option1.addEventListener("click", function () {
-  if (brokenleg === false) {
-    alert("you broke your leg trying to kick in the door. You failed.");
-    start();
-  } else if (brokenleg === "no" && foundNote !== true) {
-    alert(
-      "you found a note behind the painting. on it someone has written: lift up the box. there is a hidden compartment beneath it. "
-    );
-    foundNote = true;
-    afterFoundNote();
+  if (option1.innerText == "Try to kick in the door.") {
+    kickDoor();
   }
 });
+
 option2.addEventListener("click", function () {
-  if (mission2 == 1) {
-    alert("You found a screwdriver in the box");
-    mission2 = mission2 + 1;
-    haveascrewdriver = true;
-    brokenleg = "no";
-    missionSet2();
-    mission2 = 2;
-  } else if ((mission2 = 2)) {
+  if (option2.innerText == "Open the chest and check what is inside") {
+    openChest();
+  } else if (option2.innerText == "check behind the painting") {
     alert(
-      "stop trying to open the door. You will not get anywhere without a key."
+      "You found a note behind the painting. on it someone has written: lift up the box. there is a hidden compartment beneath it."
     );
-    triedTounhingeDoor = true;
+    option2.innerText = "Lift up box";
+  } else if (option2.innerText == "Lift up box" && haveacrowbar === false) {
+    alert("the box is nailed to the floor. You need a tool to remove it.");
+  } else if (option2.innerText == "Lift up box" && haveacrowbar === true) {
+    avterBoxlift();
   }
 });
 
 option3.addEventListener("click", function () {
-  if (mission3 == 1 && haveascrewdriver !== true) {
-    alert("You realize the ventilation system is screwed shut");
-    mission3 = 2;
-  } else if ((haveascrewdriver = true && openedVent !== true)) {
-    alert("you manage to open the ventilation shaft.");
-    openedVent = true;
-    afterOpenVentilation();
+  if (option3.innerText == "Try and open the Ventilation shaft") {
+    openVent();
+  } else if (option3.innerText == "Climb into the Ventilation shaft") {
+    climbInToVent();
   }
 });
 
 option4.addEventListener("click", function () {
-  alert("You gave up. get some rest and try again later.");
+  alert("You gave up. You failed.");
   start();
 });
 
-function missionSet2() {
-  if (haveascrewdriver != true) {
-    start();
+function kickDoor() {
+  alert("you broke your leg trying to kick in the door. You failed.");
+  start();
+}
+
+function openChest() {
+  alert("You found a screwdriver in the box");
+  haveascrewdriver = true;
+  items.innerText = "Screwdriver";
+  option2.innerText = "check behind the painting";
+  option1.innerText = "Try to unhinge the door";
+}
+
+function openVent() {
+  if (haveascrewdriver === true && openedVent === false) {
+    alert("You managed to open the ventilation shaft with the screwdriver.");
+    openedVent = true;
+    option3.innerText = "Climb into the Ventilation shaft";
+  } else if (haveascrewdriver === false) {
+    alert("You need a tool to open the ventilation shaft.");
   }
-  option1.innerText = "check behind the Painting.";
-  option2.innerText = "try to unhinge the door.";
-  option3.innerText =
-    "Try and open the Ventilation shaft with the newfound screwdriver";
-  option4.innerText = "Give Up";
 }
 
-function afterOpenVentilation() {
-  option3.innerText = "try escape through the Vent";
+function climbInToVent() {
+  if (openedVent === true && haveacrowbar === false) {
+    alert("You found a crowbar in the ventilation shaft.");
+    haveacrowbar = true;
+    items.innerText += " Crowbar";
+  } else if (openedVent === false) {
+    alert("You need to open the ventilation shaft first.");
+  } else if (haveacrowbar === true) {
+    alert(
+      "It seems that you don't fit in the ventilation shaft. You need to find another way to escape."
+    );
+  }
 }
 
-function afterFoundNote() {
-  option1.innerText = "lift the box";
+function avterBoxlift() {
+  alert(
+    "you have found a hidden compartment beneath the box. You found a puzzle inside it."
+  );
+  option2.innerText = "Solve puzzle";
 }
