@@ -14,3 +14,15 @@
 .top-grid {
     grid-column: 1 / span 2;
 }
+
+.finish {
+    vertical-align: middle;
+    align-self: middle;
+    position: fixed;
+    top: 30%;
+    font-size: 400%;
+    background-color: rgb(44, 161, 182, 0.75);
+    color: white;
+    padding-left: 40px;
+    padding-right: 40px;
+}
