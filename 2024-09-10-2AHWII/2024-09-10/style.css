@@ -1,0 +1,28 @@
+.doctitle {
+    font-size: 40px;
+    color: rgb(136, 127, 255);
+    text-decoration: underline;
+    text-align: center;
+    background-color: green;
+    transition: 1s;
+}
+.doctitle:hover{
+    background-color: black;
+}
+p{
+    color: rgb(50, 27, 163);
+    text-align: left;
+    margin-left: 15%;
+    margin-right: 30%;
+    font-weight: bold;
+}
+
+.topbtn {
+   border: solid, black;
+   background-color: lightgray;
+   font-weight: bold;
+   color: white;
+}
+.topbtn:hover {
+    background-color: gray;
+}

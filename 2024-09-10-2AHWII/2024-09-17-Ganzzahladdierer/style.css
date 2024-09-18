@@ -1,0 +1,28 @@
+body {
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, lightblue, rgb(13, 141, 141), blue);
+}
+
+.addierer {
+    background-color: rgba(204, 199, 199, 0.603);
+    width: 30%;
+    outline: auto;
+    outline-color: darkgray;
+    text-align: center;
+}
+
+.input{
+    width: 100px;
+}
+
+button{
+    background-color: lightgray;
+    border: solid black;
+    border-width: 1px;
+    border-radius: 50px;
+    
+}

@@ -21,19 +21,19 @@ let change;
 let productBought;
 //define all the products and prices
 let products = [
-  { vendingNumber: "001", name: "CocaCola", price: 1.5 },
-  { vendingNumber: "002", name: "Pepsi", price: 1.5 },
-  { vendingNumber: "003", name: "Pringles-Small", price: 2.0 },
-  { vendingNumber: "004", name: "Orbit-Mint", price: 1.0 },
-  { vendingNumber: "005", name: "Lays-Chips", price: 1.5 },
-  { vendingNumber: "006", name: "Peanuts", price: 1.5 },
-  { vendingNumber: "007", name: "nuts-mix", price: 2.0 },
-  { vendingNumber: "008", name: "Fuzetea", price: 1.5 },
-  { vendingNumber: "009", name: "Gatorade", price: 2.5 },
-  { vendingNumber: "010", name: "Granola-bar", price: 0.75 },
-  { vendingNumber: "011", name: "Feastables", price: 1.5 },
-  { vendingNumber: "012", name: "Twix", price: 1 },
-  { vendingNumber: "013", name: "kitKat", price: 1 },
+  { vendingNumber: "1", name: "CocaCola", price: 1.5 },
+  { vendingNumber: "2", name: "Pepsi", price: 1.5 },
+  { vendingNumber: "3", name: "Pringles-Small", price: 2.0 },
+  { vendingNumber: "4", name: "Orbit-Mint", price: 1.0 },
+  { vendingNumber: "5", name: "Lays-Chips", price: 1.5 },
+  { vendingNumber: "6", name: "Peanuts", price: 1.5 },
+  { vendingNumber: "7", name: "nuts-mix", price: 2.0 },
+  { vendingNumber: "8", name: "Fuzetea", price: 1.5 },
+  { vendingNumber: "9", name: "Gatorade", price: 2.5 },
+  { vendingNumber: "10", name: "Granola-bar", price: 0.75 },
+  { vendingNumber: "11", name: "Feastables", price: 1.5 },
+  { vendingNumber: "12", name: "Twix", price: 1 },
+  { vendingNumber: "13", name: "kitKat", price: 1 },
 ];
 
 products.forEach(function (x) {
