@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schach</title>
+    <link rel="stylesheet" href="schach.css">
+    <script src="schach.js" defer></script>
+</head>
+<body>
+    <div class="inhalt">
+    <h1>Schach</h1>
+    <h2><b>Inhalt:</b></h2>
+    <ul>
+    <li><a href="#figuren">Figuren</a></li>
+    <li><a href="#züge">Spezielle Züge</a></li>
+    <li><a href="#bret">Das Schachbrett</a></li>
+    <li><a href="#Weltmeister">Weltmeister</a></li>
+    </ul>
+    </div>
+    <br>
+    <p>Um den Snackautomaten zu verwenden drücken Sie A auf der Tastatur</p>
+    <br>
+<div class="figureninhalt">
+    <h3 id="figuren">Figuren</h3>
+    <ul>
+    <li>Bauer</li>
+    <li>Turm</li>
+    <li>Springer</li>
+    <li>Läufer</li>
+    <li>Dame</li>
+    <li>König</li>
+    </ul>
+    </div>
+    <section class="figureninfo">
+
+
+    <div class="Bauer">
+        <h4>Der Bauer</h4>
+        <p>Dieser kann sich immer 
+            nur ein Feld nach vorne gehen. Einen Ausnahme ist wenn er auf der Grundlinie Steht, 
+            dannn kann er 2 felder voraus gehen. Der Bauer kann eine gegnerische Figur die diagonal vor sich steht schlagen.
+        </p>
+        <img src="Pics/Bauer.png" alt="Bauerbewegungen" width="300" class="img">
+        <p>Wenn der Bauer die letzte Reihe auf der anderen seite des Bretts erreicht dann wird dieser in eine 
+        Figur der Wahl des Spielers umgewandelt. (Dame, Turm, Springer, Läufer)</p>
+    </div>
+    <div class="Turm">
+        <h3>Der Turm</h3>
+        <p>Dieser kann sich nur gerade bewegen. Alos entqweder den Reichen oder den Spalten entland.</p>
+        <img src="Pics/Turm.png" alt="TurmBewegung" width="300" class="img">
+    </div>
+    <div class="Springer">
+        <h3>Der Springer</h3>
+        <p>Der Spirnger (auch Pferd) bewegt sich immer als "L" ==> bdeutet dieser kann sich 2 felder nach vorne, rechts, 
+            unten oder links bewegen, und dannn zusätzlich noch ein feld daneben um das "L" fertigzustellen. 
+            zusätzlich gilt dass der Springer wie der Name sagt über alle Figuren "springen Kann."
+        </p>
+        <img src="Pics/Springer.png" alt="SpringerBewegung" width="300" class="img">
+    </div>
+    <div class="Läufer">
+        <h3>Läufer</h3>
+        <p>Der Läufer bewegt sich immer auf den Diagonalen. Jeder Spieler hat einen "schwarzen" und einen 
+            "weißen" Läufer. DIese heißen s da diese sich immer auf jeweils denn schwarzen oder weißen feldern bewegen</p>
+            <img src="Pics/Läufer.png" alt="Läufer" width="300" class="img">
+    </div>
+    <div class="Dame">
+        <h3>Die Dame</h3>
+        <p>Die Dame bewegt sich wie beides der Läufer und der turm. bedeutet sie kann 
+            sich auf den Diagonalen und auf den Linien Bewegen</p>
+            <img src="Pics/Dame.png" alt="Dame" width="300" class="img">
+    </div>
+    <div class="König">
+        <h3>Der König</h3>
+        <p>Der könig kann sich immer nur ein Feld in jede Richtung Bewegen. Diese FIgur muss man auch
+            "mattsetzten" um das Spiel zu gewinnen.</p>
+            <img src="Pics/König.png" alt="König" width="300" class="img">
+    </div>
+    </section>
+    <br>
+    <br>
+    <section>Dev
+        <button id="meme">Press for meme</button>
+        <br>
+        <p>Press B for Background change</p>
+    </section>
+</body>
+</html>

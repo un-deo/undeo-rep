@@ -1,0 +1,22 @@
+body{
+    background-color: rgb(218, 233, 235);
+}
+.inhalt {
+    background-color: rgb(162, 223, 225);
+    padding: 10px;
+    border: solid black;
+    width: 20%;
+    font-size: large;
+    text-decoration: underline;
+}
+.inhalt>ul>li {
+    font-size: larger;
+}
+a{
+    color: rgb(113, 113, 113);
+}
+a:hover {
+    background-color: darkblue;
+    color: white;
+    transition: 0.5s;
+}
