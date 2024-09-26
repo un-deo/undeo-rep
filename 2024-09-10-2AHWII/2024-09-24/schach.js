@@ -31,6 +31,6 @@ document.addEventListener("keydown", function (event) {
   //wenn man A auf der Tasstatur drückt wird mann zu einer weiteren seite geführt wit einem Automat
   //(der Automat war ein Ferienprojekt welches ich jetzt fertiggemacht und verbessert habe)
   if (event.key === "a") {
-    window.location.href = "FerienprojektAlsZulage/index.html";
+    window.location.href = "index.html";
   }
 });
