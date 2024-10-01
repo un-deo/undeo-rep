@@ -34,3 +34,14 @@ document.addEventListener("keydown", function (event) {
     window.location.href = "index.html";
   }
 });
+
+function reloadPage() {
+  window.location.reload();
+}
+
+document.addEventListener("keydown", function (event) {
+  // wenn R auf der Tastatur gedrückt wird, wird die Seite neu geladen
+  if (event.key === "r") {
+    reloadPage();
+  }
+});
