@@ -5,12 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h3>Automat</h3>
     <br>
-    <p>Geben sie um 100€ abzugeben 1, um 200€ abzugeben2, und um 300€ abzugeben 3ein.</p>
-    <p>Geben sie sonnst einen Eigenen Wert zum abheben ein.</p>
+    <ul>
+        <li>geben sie ... ein um ... abzuheben</li>
+        <li>1: 100€</li>
+        <li>2: 200€</li>
+        <li>3: 300€</li>
+        <li> oder irgendein eigener logischer Wert</li>
+    </ul>
+    <p id="kontostand">0€</p>
+    <p id="kontonummer">0000000000
+    </p>
+    <br>
     <input type="number" id="input">
     <br>
     <button id="submit">Submit</button>
