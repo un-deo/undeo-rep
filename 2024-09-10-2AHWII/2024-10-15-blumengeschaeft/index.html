@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blumengeschäft</title>
+</head>
+<body>
+    <h1>Blumengeschäft</h1>
+    <br>
+    <br>
+    <form action="" oninput="">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" placeholder="Max Musterman"><br>
+    <label for="email">E-Mail:</label>
+    <input type="email" name="email" id="email" placeholder="Max.Musterman@spengergasse.at" style="width: 250px"><br>
+    <label for="blumen">Produkte</label>
+    <select name="blumen" id="blumen" oninput="preis.innerHTML = blumen.value">
+        <option value="2€">Sonnenblume</option>
+        <option value="2,50€">Tulpe</option>
+        <option value="3€">Lilie</option>
+        <option value="1,50€">Rose</option>
+        <option value="4€">Edelweiß</option>
+    </select>
+    <label for="button" id="preis">2€</label>
+    <button type="button" id="button" onclick="addProduct()">Hinzufügen</button><br>
+    <textarea name="Anmerkung" id="Anmerkung" cols="40" rows="10">Hallo,
+ich hätte noch folgende Anmerkung
+    </textarea>
+    <br>
+    <br>
+    <br>
+    <button type="submit">Bestellen</button>
+    </form>
+    <br>
+    <br>
+    <h2>Warenkorb</h2>
+    <table id="tbl" style="border-collapse: separate; border: solid, black;">
+        <tr >
+            <th style="border: solid;">Produkte</td>
+            <th style="border: solid;">Preis</td>
+        </tr>
+    </table>
+    <p id="sum">summe:</p>
+    <p id="summe">0</p>
+<script>
+function addProduct() {
+    const blumenSelect = document.getElementById('blumen');
+    const selectedOption = blumenSelect.options[blumenSelect.selectedIndex];
+    const productName = selectedOption.text;
+    const productPrice = parseFloat(selectedOption.value.replace('€', '').replace(',', '.'));
+
+    const table = document.getElementById('tbl');
+    const newRow = table.insertRow();
+    const cell1 = newRow.insertCell(0);
+    const cell2 = newRow.insertCell(1);
+    cell1.textContent = productName;
+    cell2.textContent = selectedOption.value;
+
+    const sumElement = document.getElementById('summe');
+    const currentSum = parseFloat(sumElement.textContent);
+    sumElement.textContent = (currentSum + productPrice).toFixed(2);
+}
+</script>
+</body>
+</html>
