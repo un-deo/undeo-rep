@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <div class="container mt-3"></div>
+        <div class="d-flex justify-content-center">
+            <div id="clock" class="fs-3"></div>
+        </div>
+        <div class="d-flex justify-content-center mt-2">
+            <button id="pauseBtn" class="btn btn-warning me-2">Pause</button>
+            <button id="resumeBtn" class="btn btn-success">Resume</button>
+        </div>
+    </div>
+
+    <script>
+        let clockInterval;
+        let paused = false;
+        document.getElementById("clock").innerHTML 
+        function updateClock() {
+            if (!paused) {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString();
+                document.getElementById('clock').innerHTML = timeString;
+            }
+        }
+
+        function startClock() {
+            clockInterval = setInterval(updateClock, 1000);
+        }
+
+        document.getElementById('pauseBtn').addEventListener('click', () => {
+            paused = true;
+        });
+
+        document.getElementById('resumeBtn').addEventListener('click', () => {
+            paused = false;
+            updateClock(); // Update immediately to current time
+        });
+
+        startClock();
+    </script>
+    <caption>Ausgaben für Weihnachten</caption>
+    <table class="table m-3 mt-1 ms-2 border border-success">
+        <thead class="table-light">
+            <tr>
+                <th scope="col" colspan="2" style="text-align: center;">Land</th>
+                
+                <th scope="col">Ausgaben</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Deutschland</td>
+                <td>€520,40</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Österreich</td>
+                <td rowspan="2" class="align-middle">375,00</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Schweiz</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Durchschnittliche Ausgaben</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+
+</html>
