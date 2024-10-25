@@ -11,11 +11,11 @@
     <br>
     <form action="" oninput="">
     <label for="name">Name:</label>
-    <input type="text" name="name" id="name" placeholder="Max Musterman"><br>
+    <input type="text" name="name" id="name" placeholder="Max Musterman" required><br>
     <label for="email">E-Mail:</label>
-    <input type="email" name="email" id="email" placeholder="Max.Musterman@spengergasse.at" style="width: 250px"><br>
+    <input type="email" name="email" id="email" placeholder="Max.Musterman@spengergasse.at" style="width: 250px" required><br>
     <label for="blumen">Produkte</label>
-    <select name="blumen" id="blumen" oninput="preis.innerHTML = blumen.value">
+    <select name="blumen" id="blumen" oninput="preis.innerHTML = blumen.value" required>
         <option value="2€">Sonnenblume</option>
         <option value="2,50€">Tulpe</option>
         <option value="3€">Lilie</option>
@@ -23,8 +23,9 @@
         <option value="4€">Edelweiß</option>
     </select>
     <label for="button" id="preis">2€</label>
-    <button type="button" id="button" onclick="document.getElementById('tbl').innerHTML += '<tr><td style=\'border: solid;\'>'+ document.getElementById('blumen').options[document.getElementById('blumen').selectedIndex].text + '</td><td style=\'border: solid;\'>' + preis.innerHTML + '</td></tr>'; document.getElementById('summe').innerHTML = Number(document.getElementById('summe').innerHTML) + parseFloat(blumen.value)">Hinzufügen</button> <br>
-    <!--<button type="button" id="button" onclick="document.getElementById('tbl').innerHTML += '<tr><td style=\'border: solid;\'>document.getElementById(\'blumen\').options[blumen.selectedIndex]</td><td style=\'border: solid;\'>Preis</td></tr>';">Hinzufügen</button><br>
+    <button type="button" id="button" onclick="addProduct()">Hinzufügen</button><br>
+    <!--<button type="button" id="button" onclick="document.getElementById('tbl').innerHTML += '<tr><td style=\'border: solid;\'>'+ document.getElementById('blumen').options[document.getElementById('blumen').selectedIndex].text + '</td><td style=\'border: solid;\'>' + preis.innerHTML + '</td></tr>'; document.getElementById('summe').innerHTML = Number(document.getElementById('summe').innerHTML) + parseFloat(blumen.value)">Hinzufügen</button> <br>
+    <button type="button" id="button" onclick="document.getElementById('tbl').innerHTML += '<tr><td style=\'border: solid;\'>document.getElementById(\'blumen\').options[blumen.selectedIndex]</td><td style=\'border: solid;\'>Preis</td></tr>';">Hinzufügen</button><br>
 -->
     <textarea name="Anmerkung" id="Anmerkung" cols="40" rows="10">Hallo,
 ich hätte noch folgende Anmerkung:
@@ -32,37 +33,51 @@ ich hätte noch folgende Anmerkung:
     <br>
     <br>
     <br>
-    <button type="submit">Bestellen</button>
+    <button type="submit" id="Bestellen">Bestellen</button>
     </form>
     <br>
     <br>
     <h2>Warenkorb</h2>
     <table id="tbl" style="border-collapse: separate; border: solid, black;">
-        <tr >
-            <th style="border: solid;">Produkte</td>
-            <th style="border: solid;">Preis</td>
+        <tr>
+            <th style="border: solid;">Produkte</th>
+            <th style="border: solid;">Preis</th>
         </tr>
     </table>
     <p id="sum">summe:</p>
     <p id="summe">0</p>
-<!--<script>
-//function addProduct() {
-//    const blumenSelect = document.getElementById('blumen');
-//    const selectedOption = blumenSelect.options[blumenSelect.selectedIndex];
-//    const productName = selectedOption.text;
-//    const productPrice = parseFloat(selectedOption.value.replace('€', '').replace(',', '.'));
-//
-//    const table = document.getElementById('tbl');
-//    const newRow = table.insertRow();
-//    const cell1 = newRow.insertCell(0);
-//    const cell2 = newRow.insertCell(1);
-//    cell1.textContent = productName;
-//    cell2.textContent = selectedOption.value;
-//
-//    const sumElement = document.getElementById('summe');
-//    const currentSum = parseFloat(sumElement.textContent);
-//    sumElement.textContent = (currentSum + productPrice).toFixed(2);
-//}-->
+<script>
+function addProduct() {
+    const blumenSelect = document.getElementById('blumen');
+    const selectedOption = blumenSelect.options[blumenSelect.selectedIndex];
+    const productName = selectedOption.text;
+    const productPrice = parseFloat(selectedOption.value.replace('€', '').replace(',', '.'));
+
+    const table = document.getElementById('tbl');
+    const newRow = table.insertRow();
+    const cell1 = newRow.insertCell(0);
+    const cell2 = newRow.insertCell(1);
+    cell1.textContent = productName;
+    cell2.textContent = selectedOption.value;
+
+    const sumElement = document.getElementById('summe');
+    const currentSum = parseFloat(sumElement.textContent);
+    sumElement.textContent = (currentSum + productPrice).toFixed(2);
+    }
+    
+    document.getElementById("Bestellen").addEventListener("click", function() {
+        alert("Ihre Produkte wurden bestellt. " + `siehe die Rechnung die Sie hier: ${document.getElementById("email").value} bekommen haben`);
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('blumen').selectedIndex = 0;
+        document.getElementById('Anmerkung').value = '';
+        document.getElementById('tbl').innerHTML = `
+        <tr>
+            <th style="border: solid;">Produkte</th>
+            <th style="border: solid;">Preis</th>
+        </tr>`;
+        document.getElementById('summe').textContent = '0';
+});
 </script>
 </body>
 </html>

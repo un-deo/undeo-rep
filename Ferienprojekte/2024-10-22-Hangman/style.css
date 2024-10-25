@@ -1,0 +1,54 @@
+.grid-container {
+    display: grid;
+    margin-left: 100px;
+    margin-right: 95%;
+    grid-template-columns: 75px 75px 75px 75px 75px 75px 75px 75px 75px;
+    grid-template-rows: 75px 75px 75px;
+    text-align: center;
+    outline: solid, black, 1px;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center  ;
+    grid-template-areas:
+        "a b c d e f g h del"
+        "i j k l m n o p q"
+        "r s t u v w x y z";
+}
+
+.a { grid-area: a; border: solid, black, 0.5px;}
+.b { grid-area: b; border: solid, black, 0.5px;}
+.c { grid-area: c; border: solid, black, 0.5px;}
+.d { grid-area: d; border: solid, black, 0.5px;}
+.e { grid-area: e; border: solid, black, 0.5px;}
+.f { grid-area: f; border: solid, black, 0.5px;}
+.g { grid-area: g; border: solid, black, 0.5px;}
+.h { grid-area: h; border: solid, black, 0.5px;}
+.i { grid-area: i; border: solid, black, 0.5px;}
+.j { grid-area: j; border: solid, black, 0.5px;}
+.k { grid-area: k; border: solid, black, 0.5px;}
+.l { grid-area: l; border: solid, black, 0.5px;}
+.m { grid-area: m; border: solid, black, 0.5px;}
+.n { grid-area: n; border: solid, black, 0.5px;}
+.o { grid-area: o; border: solid, black, 0.5px;}
+.p { grid-area: p; border: solid, black, 0.5px;}
+.q { grid-area: q; border: solid, black, 0.5px;}
+.r { grid-area: r; border: solid, black, 0.5px;}
+.s { grid-area: s; border: solid, black, 0.5px;}
+.t { grid-area: t; border: solid, black, 0.5px;}
+.u { grid-area: u; border: solid, black, 0.5px;}
+.v { grid-area: v; border: solid, black, 0.5px;}
+.w { grid-area: w; border: solid, black, 0.5px;}
+.x { grid-area: x; border: solid, black, 0.5px;}
+.y { grid-area: y; border: solid, black, 0.5px;}
+.z { grid-area: z; border: solid, black, 0.5px;}
+.del { grid-area: del; border: solid, black, 0.5px;}
+
+.btn {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(235, 234, 234);
+}
+.btn:hover {
+    background-color: gray;
+}
