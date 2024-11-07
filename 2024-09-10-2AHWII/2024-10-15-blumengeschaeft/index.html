@@ -66,6 +66,9 @@ function addProduct() {
     }
     
     document.getElementById("Bestellen").addEventListener("click", function() {
+        if (document.getElementById("name").value == "" || document.getElementById("email").value == ""){
+            alert("bitte alles ausfüllen")
+        } else {
         alert("Ihre Produkte wurden bestellt. " + `siehe die Rechnung hier: ${document.getElementById("email").value} `);
         document.getElementById('name').value = '';
         document.getElementById('email').value = '';
@@ -77,6 +80,7 @@ function addProduct() {
             <th style="border: solid;">Preis</th>
         </tr>`;
         document.getElementById('summe').textContent = '0';
+        }
 });
 </script>
 </body>
