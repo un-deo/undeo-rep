@@ -1054,7 +1054,7 @@ function checkIfWon() {
   }
 }
 document.getElementById("submit").addEventListener("click", function () {
-  if (document.getElementById("input").value == guessingWord) {
+  if (document.getElementById("input").value.toLowerCase == guessingWord) {
     document.body.style.background = "green";
     document.getElementById("word").innerHTML = "Word: " + guessingWord;
   } else {

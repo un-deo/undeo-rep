@@ -49,7 +49,7 @@ ich hätte noch folgende Anmerkung:
 <script>
 function addProduct() {
     const blumenSelect = document.getElementById('blumen');
-    const selectedOption = blumenSelect.options[blumenSelect.selectedIndex];
+    let selectedOption = blumenSelect.options[blumenSelect.selectedIndex];
     const productName = selectedOption.text;
     const productPrice = parseFloat(selectedOption.value.replace('€', '').replace(',', '.'));
 
@@ -66,7 +66,7 @@ function addProduct() {
     }
     
     document.getElementById("Bestellen").addEventListener("click", function() {
-        alert("Ihre Produkte wurden bestellt. " + `siehe die Rechnung die Sie hier: ${document.getElementById("email").value} bekommen haben`);
+        alert("Ihre Produkte wurden bestellt. " + `siehe die Rechnung hier: ${document.getElementById("email").value} `);
         document.getElementById('name').value = '';
         document.getElementById('email').value = '';
         document.getElementById('blumen').selectedIndex = 0;
