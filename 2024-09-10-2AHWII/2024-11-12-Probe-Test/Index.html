@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abstimmen</title>
+</head>
+<body>
+    <h1>Bitte Abstimmen</h1>
+    <input type="text" placeholder="Max Mustermann" id="name"> <br>
+    <select name="frucht" id="fruchtSelect" >
+        <option value="placeholder">Bitte wählen</option>
+        <option value="Apfel">Apfel</option>
+        <option value="Birne">Birne</option>
+        <option value="Kirsche">Kirsche</option>
+        <option value="Marille">Marille</option>
+    </select>
+    <br>
+    <button id="submit" onclick="checkInput()">Abstimmen</button>
+
+
+    <script>
+        let fruchte = document.getElementById("fruchtSelect")
+        let name = "";
+        let selection  = document.getElementById("fruchtSelect");
+        function checkInput()  {
+            name = document.getElementById("name").value;
+            if (document.getElementById("name").value == "") {
+                alert("Bitte name eingeben")
+            } else if (name.length < 5) {
+                alert("name zu kurz")
+            } else if (selection.options[selection.selectedIndex].text == 'Bitte wählen'){
+                alert("bitte Option wählen")
+            } else {
+                alert(`Sie ${name} haben für ${selection.options[selection.selectedIndex].text} abgestimmt. Vielen Dank!`)
+            }
+        }
+    </script>
+</body>
+</html>

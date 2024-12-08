@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>1. Test</h1>
+    <label for="username">Username:</label>
+    <input type="text" placeholder="Max Mustermann" id="username"> <br>
+    <label for="email">Email:</label>
+    <input type="email" placeholder="beispiel@domain.com" id="email"> <br>
+    <label for="mahlzeit">Bitte wähle eines:</label>
+    <select name="select" id="mahlzeit">
+        <option value="">Bitte wählen</option>
+        <option value="Frühstück">Frühstück</option>
+        <option value="Mittagessen">Mittagessen</option>
+        <option value="Abendessen">Abendessen</option>
+        <option value="Snack">Snack</option>
+    </select> <br>
+
+    <input type="checkbox" name="TOS" id="TOS-check">
+    <label for="TOS-check">Ich stimme den Nutzungsbedingungen zu</label>
+    <br>
+    <button id="submit" onclick="checkselction()">Absenden</button>
+<!--script-->
+<script>
+    let username = "";
+    let select = document.getElementById("mahlzeit");
+    let hasDot = false;
+    let hasAt = false;
+    function checkselction() {
+            username = document.getElementById("username").value;
+            if (document.getElementById("username").value == "") {
+                alert("Bitte username eingeben")
+            } else if (username.length < 5) {
+                alert("username zu kurz")
+            } else if (document.getElementById("email").value == "") {
+                alert("Bitte eine Email eingeben.")
+            } else{
+                checkemail();
+            }
+    }
+    function checkemail() {
+        let email = document.getElementById("email").value;
+        hasDot = email.includes(".");
+        hasAt = email.includes("@");
+        if (hasAt && hasDot) {
+            finishcheck()
+        } else {
+            alert("bitte valide Email eingeben.");
+        }
+    }
+    function finishcheck(){
+         if (select.options[select.selectedIndex].value == '') {
+            alert("bitte Option wählen")
+        } else if (document.getElementById("TOS-check").checked == false) {
+            alert("bitte den Nutzungsbedingungen zustimmen")
+        } else {
+            alert(`Sie ${username} haben sich für ${select.options[select.selectedIndex].text} angemeldet. Vielen Dank!`);
+        }
+    }
+</script>
+</body>
+</html>
