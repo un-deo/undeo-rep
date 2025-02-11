@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button Hell</title>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <h1 id="counter">Anzahl der Buttons:</h1>
+    <input
+      type="number"
+      id="removenumber"
+      placeholder="Anzahl der Buttons zum Entfernen"
+    />
+    <button id="remove">remove given amount</button>
+    <div id="buttonarea" class="parent">
+      <!--<button class="button" onclick="double()" style="background-color: white;">click to double</button>-->
+    </div>
+  </body>
+
+  <style>
+    .parent {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .child {
+      flex: 1 0 21%;
+      margin: 5px;
+    }
+  </style>
+</html>
