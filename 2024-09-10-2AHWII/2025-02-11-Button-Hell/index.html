@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Button Hell</title>
     <script src="script.js" defer></script>
+    <style>
+      .parent {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .child {
+        flex: 0 0 21%;
+        margin: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #buttonarea {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    </style>
   </head>
   <body>
     <h1 id="counter">Anzahl der Buttons:</h1>
@@ -18,16 +39,4 @@
       <!--<button class="button" onclick="double()" style="background-color: white;">click to double</button>-->
     </div>
   </body>
-
-  <style>
-    .parent {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .child {
-      flex: 1 0 21%;
-      margin: 5px;
-    }
-  </style>
 </html>
