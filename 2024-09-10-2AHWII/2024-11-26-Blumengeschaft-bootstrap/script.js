@@ -83,7 +83,7 @@ document.getElementById("Bestellen").addEventListener("click", function () {
     //erstellung eines <a> elements in dem HTML welches den Link beinhaltet
     const a = document.createElement("a");
     a.href = url;
-    //hier wird ein download mit dem element <a> verbunden welchen durch anclicken ausgelöst wird (dateinamen standardmäßig "[Name-des-Kunden]_Rechnung.json")
+    //hier wird ein download mit dem element <a> verbunden welchen durch anclicken ausgelöst wird (dateinamen standardmäßig "Rechnung_[Name-des-Kunden].json")
     a.download = `Rechnung_${currentOrder.Name}.json`;
     //simulierung eines User-cicks auf dem element <a> damit der download automatisch ausgelöst wird.
     a.click();
