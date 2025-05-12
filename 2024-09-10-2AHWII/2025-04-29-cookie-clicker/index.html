@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie Clicker</title>
+    <link rel="stylesheet" href="style.css" />
+    <!--<script src="script.js" defer></script>-->
+    <script src="game.js" defer></script>
+    <script src="tooltip.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-section">
+        <center>
+          <h2 id="cookieCount">Cookies: 0</h2>
+          <h2 id="CPS">Cookies per Second: 0</h2>
+          <img
+            src="pics/cookie-svgrepo-com.svg"
+            id="cookieClicker"
+            alt="cookie"
+            width="300"
+            height="300"
+            draggable="false"
+          />
+        </center>
+      </div>
+      <div class="middle-section">
+        <center>
+          <button onclick="resetGame()">Reset Game.</button><br />
+          <br />
+          <h2>Achievements & Upgrades</h2>
+          <h4 id="cursorCounter">Cursors bought: 0</h4>
+          <h4 id="grandmaCounter">Grandmas bought: 0</h4>
+          <h4 id="bakeryCounter">Bakeries bought: 0</h4>
+          <br />
+          <br />
+          <div id="Achievements"></div>
+        </center>
+      </div>
+      <div class="right-section">
+        <h2>Upgrades:</h2>
+        <table>
+          <tr>
+            <td>
+              <img
+                width="50"
+                height="50"
+                src="pics/cursor.svg"
+                alt="upgrade"
+                id="upgradeClicker"
+                onclick="addCursor()"
+                draggable="false"
+              />
+            </td>
+            <td>
+              <img
+                src="pics/cookieGrandma.svg"
+                alt="Grandma upgrade"
+                height="50"
+                width="50"
+                id="upgradeGrandma"
+                onclick="addGrandma()"
+                draggable="false"
+              />
+            </td>
+            <td>
+              <img
+                src="pics/bakery.svg"
+                alt="bakery upgrade"
+                height="50"
+                width="50"
+                id="upgradeBakery"
+                onclick="addBakery()"
+                draggable="false"
+              />
+            </td>
+          </tr>
+          <tr>
+            <h3>boosts</h3>
+          </tr>
+          <tr>
+            <td>
+              <img
+                src="pics/cursorupgrade.png"
+                alt="Cursor upgrade"
+                height="50"
+                width="50"
+                id="boostcursor"
+                onclick="boostcursor()"
+                draggable="false"
+              />
+            </td>
+            <td>
+              <img
+                src="pics/crate.svg"
+                alt="crate"
+                height="50"
+                width="50"
+                onclick="buyCookieDrop()"
+                id="cookieCrate"
+                draggable="false"
+              />
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
