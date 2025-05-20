@@ -8,7 +8,7 @@
     <script src="game.js" defer></script>
     <script src="tooltip.js" defer></script>
   </head>
-  <body>
+  <body onunload="saveGame()">
     <div class="container">
       <div class="left-section">
         <center>
@@ -27,6 +27,8 @@
       <div class="middle-section">
         <center>
           <button onclick="resetGame()">Reset Game.</button><br />
+          <br />
+          <button onclick="saveGame()">Save Game</button>
           <br />
           <h2>Achievements & Upgrades</h2>
           <h4 id="cursorCounter">Cursors bought: 0</h4>
@@ -79,25 +81,23 @@
             <h3>boosts</h3>
           </tr>
           <tr>
-            <td>
+            <td id="boostcursor">
               <img
                 src="pics/cursorupgrade.png"
                 alt="Cursor upgrade"
                 height="50"
                 width="50"
-                id="boostcursor"
                 onclick="boostcursor()"
                 draggable="false"
               />
             </td>
-            <td>
+            <td id="cookieCrate">
               <img
                 src="pics/crate.svg"
                 alt="crate"
                 height="50"
                 width="50"
                 onclick="buyCookieDrop()"
-                id="cookieCrate"
                 draggable="false"
               />
             </td>

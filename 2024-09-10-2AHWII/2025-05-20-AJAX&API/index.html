@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API</title>
+  </head>
+  <body>
+    <h2>Bear</h2>
+    <img src="https://placebear.com/200/300" alt="" />
+    <h2>IP</h2>
+    <p id="ip">IP:</p>
+    <h2>Chuck Norris</h2>
+    <p id="joke"></p>
+    <h2>Convert</h2>
+    <select name="" id="currencyFrom">
+      <option value="EUR">From EUR</option>
+      <option value="USD">FROM USD</option>
+      <option value="BGN">FROM BGN</option>
+    </select>
+    <select name="" id="currencyTo">
+      <option value="USD">to USD</option>
+      <option value="EUR">to EUR</option>
+      <option value="BGN">to BGN</option>
+    </select>
+    <input type="number" id="amount" placeholder="Amount" />
+    <button
+      onclick="convert(String(document.getElementById('currencyFrom').value), String(document.getElementById('currencyTo').value), Number(document.getElementById('amount').value));"
+    >
+      convert
+    </button>
+    <h2>Unknown Gender</h2>
+    <ul id="char-list"></ul>
+  </body>
+  <script>
+    fetch("http://ip-api.com/json")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Deine IP-Adresse ist:", data.query);
+        document.getElementById("ip").innerHTML = "IP: " + data.query;
+      });
+
+    fetch("https://api.chucknorris.io/jokes/random")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("witz:", data.value);
+        document.getElementById("joke").innerHTML = data.value;
+      });
+
+    function convert(from, to, amount) {
+      fetch(`https://api.frankfurter.dev/v1/latest?base=${from}&symbols=${to}`)
+        .then((resp) => resp.json())
+        .then((data) => {
+          const convertedAmount = (amount * data.rates[to]).toFixed(2);
+          alert(`${amount} ${from} = ${convertedAmount} ${to}`);
+        });
+    }
+
+    fetch("https://rickandmortyapi.com/api/character?gender=unknown")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Characters", data.results);
+        const charList = document.getElementById("char-list");
+
+        for (let i = 0; i < data.results.length; i++) {
+          charList.innerHTML += `<li>${data.results[i].name}</li>`;
+        }
+      });
+  </script>
+</html>

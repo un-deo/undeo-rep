@@ -14,9 +14,13 @@ window.gameData = {
   bakeryCount: 0,
   achievements: {
     cookieMonster: false,
-    toManyClicks: false,
+    tooManyClicks: false,
   },
   cookieDropChancePercent: 0,
+  boosts: {
+    cursorBoost: false,
+    cookiedrop: false,
+  },
 };
 window.HTMLreferences = {
   cookieCount: document.getElementById("cookieCount"),
@@ -26,6 +30,16 @@ window.HTMLreferences = {
   upgradeBakery: document.getElementById("upgradeBakery"),
   CookiesPerSecDisplay: document.getElementById("CPS"),
 };
+
+function saveGame() {
+  localStorage.clear();
+  localStorage.setItem("gameData", JSON.stringify(window.gameData));
+}
+
+function loadGame() {
+  window.gameData = JSON.parse(localStorage.getItem("gameData"));
+  render();
+}
 
 setInterval(function () {
   window.gameData.cookieCount += window.gameData.automaticCookiesPerSecond;
@@ -114,8 +128,9 @@ function boostcursor() {
     window.HTMLreferences.cookieCount.innerHTML =
       "Cookies: " + window.gameData.cookieCount;
     window.gameData.cookiesPerClick += window.gameData.cursorCount;
-    document.getElementById("boostcursor").parentElement.remove();
+    document.getElementById("boostcursor").remove();
     tooltip.remove();
+    window.gameData.boosts.cursorBoost = true;
   } else {
     console.log("You dont have enough cookies to buy a cursor upgrade!");
   }
@@ -163,16 +178,29 @@ function resetGame() {
       cursorCount: 0,
       CookiesPerCursorClick: 1,
       totalCookiesCollected: 0,
+      grandmaCount: 0,
+      bakeryCount: 0,
       achievements: {
         cookieMonster: false,
-        toManyClicks: false,
+        tooManyClicks: false,
+      },
+      boosts: {
+        cursorBoost: false,
+        cookiedrop: false,
       },
       cookieDropChancePercent: 0,
     };
+
     window.HTMLreferences.cookieCount.innerHTML = "Cookies: 0";
     window.HTMLreferences.CookiesPerSecDisplay.innerHTML =
       "Cookies per second: 0";
+    document.getElementById("cursorCounter").innerHTML = "Cursors bought: 0";
+    document.getElementById("grandmaCounter").innerHTML = "Grandmas bought: 0";
+    document.getElementById("bakeryCounter").innerHTML = "Bakeries bought: 0";
+    document.getElementById("Achievements").innerHTML = "";
+
     alert("Game has been reset!");
+    location.reload();
   }
 }
 
@@ -182,8 +210,9 @@ function buyCookieDrop() {
     window.gameData.cookieDropChancePercent = 5;
     window.HTMLreferences.cookieCount.innerHTML =
       "Cookies: " + window.gameData.cookieCount;
-    document.getElementById("cookieCrate").parentElement.remove();
+    document.getElementById("cookieCrate").remove();
     tooltip.remove();
+    window.gameData.boosts.cookiedrop = true;
   } else {
     console.log("You dont have enough cookies to buy a cookie drop!");
     tooltip.remove();
@@ -209,3 +238,34 @@ function animateCookieClicker() {
     }, 100);
   }
 }
+
+function render() {
+  window.HTMLreferences.cookieCount.innerHTML =
+    "Cookies: " + window.gameData.cookieCount;
+  window.HTMLreferences.CookiesPerSecDisplay.innerHTML =
+    "Cookies per second: " + window.gameData.automaticCookiesPerSecond;
+  document.getElementById("cursorCounter").innerHTML =
+    "Cursors bought: " + window.gameData.cursorCount;
+  document.getElementById("grandmaCounter").innerHTML =
+    "Grandmas bought: " + window.gameData.grandmaCount;
+  document.getElementById("bakeryCounter").innerHTML =
+    "Bakeries bought: " + window.gameData.bakeryCount;
+  const achievementsContainer = document.getElementById("Achievements");
+  achievementsContainer.innerHTML = "";
+  if (window.gameData.achievements.cookieMonster) {
+    achievementsContainer.innerHTML += `<h3>Achievement Unlocked: Cookie Monster!</h3> \n <p>\nCollect 10000 Cookies Total</p>`;
+  }
+  if (window.gameData.achievements.tooManyClicks) {
+    achievementsContainer.innerHTML += `<h3>Achievement Unlocked: Too Many Clicks</h3> \n <p>\nBuy 100 Cursors</p>`;
+  }
+  if (window.gameData.boosts.cursorBoost) {
+    document.getElementById("boostcursor").remove();
+  }
+  if (window.gameData.boosts.cookiedrop) {
+    document.getElementById("cookieCrate").remove();
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  loadGame();
+});
