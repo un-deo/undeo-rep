@@ -1,15 +1,39 @@
-//Wofür wird JavaScript verwendet?
-//JavaScript wird verwendet, um interaktive und dynamische Elemente sowie funktionen auf Webseiten zu erstellen.
+let userCount = 0;
+let allUsers = {};
 
-//Wie kann man mittels JavaScript den Inhalt von folgendem HTML-Element verändern? <div id=“meindiv“>Inhalt 1</div>
-//document.getElementById("meindiv").innerHTML = "neuer inhalt"
+function addUser(x, y) {
+  let user = { userName: x, password: y };
+  userCount++;
+  allUsers[userCount] = user;
+}
+addUser("man", "passwd");
+addUser("man1", "passwd");
+addUser("man2", "passwd");
+addUser("man3", "passwd");
+addUser("man4", "passwd");
+console.log(allUsers);
 
-//Wie kann man mittels JavaScript den Inhalt von folgendem HTML-Element verändern? <div class=“spezial“>Inhalt 2</div>
-//document.querySelector(".spezial").innerHTML = "neuer inhalt"
+delete allUsers[3];
+console.log(allUsers);
 
-//Wie kann man in einem HTML-Formular ein Dropdown erzeugen?
-//<input type="dropdown">
-// <option>option1</option>
-// <option>option2</option>
-// <option>option3</option>
-// </input>
+function checkAvailibility(x) {
+  if (allUsers[x] == undefined) {
+    console.log("User " + x + " is available");
+  } else if (allUsers[x] != undefined) {
+    console.log("User " + x + " is taken");
+  }
+}
+checkAvailibility(3);
+
+window.onclose = function () {
+  localStorage.setItem("allUsers", JSON.stringify(allUsers));
+  localStorage.setItem("userCount", userCount);
+};
+window.onload = function () {
+  if (localStorage.getItem("allUsers") !== null) {
+    allUsers = JSON.parse(localStorage.getItem("allUsers"));
+    userCount = parseInt(localStorage.getItem("userCount"));
+  }
+  console.log(allUsers);
+  console.log(userCount);
+};

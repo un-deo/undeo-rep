@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UNO!</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <center><h1>The Ultimate Singleplayer UNO Experience!</h1></center>
+    <center>
+      <div style="display: flex; justify-content: center">
+        <div
+          id="color"
+          style="
+            width: 200px;
+            height: 300px;
+            background-color: red;
+            border-radius: 25px;
+            display: flex;
+            justify-content: center;
+            outline: solid black;
+          "
+        >
+          <p style="align-self: center; font-size: 200px" id="Symbol">1</p>
+        </div>
+        <div
+          id="color"
+          style="
+            width: 200px;
+            height: 300px;
+            background-color: rgb(246, 53, 53);
+            border-radius: 25px;
+            display: flex;
+            justify-content: center;
+            outline: solid black;
+            margin-left: 50px;
+          "
+          onclick="drawCard()"
+        >
+          <p style="align-self: center; font-size: 80px" id="Symbol">
+            Card Deck
+          </p>
+        </div>
+      </div>
+    </center>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <center>
+      <div id="player1" style="width: 60%"></div>
+    </center>
+  </body>
+</html>

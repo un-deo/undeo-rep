@@ -1,0 +1,129 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #f7f9fc;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 700px;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+}
+
+.recipe-card {
+    background: #eaf4ff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+#mealTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #1e3a8a;
+}
+
+.recipe-description {
+    text-align: left;
+    white-space: pre-line;
+    /* keeps line breaks from JS description */
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #34495e;
+}
+
+.btn {
+    background: #1e90ff;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    user-select: none;
+}
+
+.btn:hover {
+    background: #1c86ee;
+    transform: translateY(-2px);
+}
+
+footer {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+@media (max-width: 500px) {
+    .recipe-card {
+        padding: 1rem;
+    }
+
+    #mealTitle {
+        font-size: 1.3rem;
+    }
+}
+
+.controls {
+    margin: 20px 0;
+    display: flex;
+    gap: 15px;
+    /* space between button and dropdown */
+    align-items: center;
+    /* vertically center */
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Dropdown styling */
+#mealType {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+#mealType:hover,
+#mealType:focus {
+    border-color: #4CAF50;
+    background-color: #ffffff;
+    outline: none;
+}
+h1 {
+user-select: none;
+}
