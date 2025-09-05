@@ -1,0 +1,15 @@
+C:\Users\undeo\Dejan\!Schule\1AHWII\codes repository\undeo-rep\2025-09-03-3AHWII\2025-09-03-bruch-addierer\bin\Debug\net9.0\2025-09-03-bruch-addierer.exe
+C:\Users\undeo\Dejan\!Schule\1AHWII\codes repository\undeo-rep\2025-09-03-3AHWII\2025-09-03-bruch-addierer\bin\Debug\net9.0\2025-09-03-bruch-addierer.deps.json
+C:\Users\undeo\Dejan\!Schule\1AHWII\codes repository\undeo-rep\2025-09-03-3AHWII\2025-09-03-bruch-addierer\bin\Debug\net9.0\2025-09-03-bruch-addierer.runtimeconfig.json
+C:\Users\undeo\Dejan\!Schule\1AHWII\codes repository\undeo-rep\2025-09-03-3AHWII\2025-09-03-bruch-addierer\bin\Debug\net9.0\2025-09-03-bruch-addierer.dll
+C:\Users\undeo\Dejan\!Schule\1AHWII\codes repository\undeo-rep\2025-09-03-3AHWII\2025-09-03-bruch-addierer\bin\Debug\net9.0\2025-09-03-bruch-addierer.pdb
+C:\Users\undeo\Dejan\!Schule\1AHWII\codes repository\undeo-rep\2025-09-03-3AHWII\2025-09-03-bruch-addierer\obj\Debug\net9.0\2025-09-03-bruch-addierer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\undeo\Dejan\!Schule\1AHWII\codes repository\undeo-rep\2025-09-03-3AHWII\2025-09-03-bruch-addierer\obj\Debug\net9.0\2025-09-03-bruch-addierer.AssemblyInfoInputs.cache
+C:\Users\undeo\Dejan\!Schule\1AHWII\codes repository\undeo-rep\2025-09-03-3AHWII\2025-09-03-bruch-addierer\obj\Debug\net9.0\2025-09-03-bruch-addierer.AssemblyInfo.cs
+C:\Users\undeo\Dejan\!Schule\1AHWII\codes repository\undeo-rep\2025-09-03-3AHWII\2025-09-03-bruch-addierer\obj\Debug\net9.0\2025-09-03-bruch-addierer.csproj.CoreCompileInputs.cache
+C:\Users\undeo\Dejan\!Schule\1AHWII\codes repository\undeo-rep\2025-09-03-3AHWII\2025-09-03-bruch-addierer\obj\Debug\net9.0\2025-09-03-bruch-addierer.sourcelink.json
+C:\Users\undeo\Dejan\!Schule\1AHWII\codes repository\undeo-rep\2025-09-03-3AHWII\2025-09-03-bruch-addierer\obj\Debug\net9.0\2025-09-03-bruch-addierer.dll
+C:\Users\undeo\Dejan\!Schule\1AHWII\codes repository\undeo-rep\2025-09-03-3AHWII\2025-09-03-bruch-addierer\obj\Debug\net9.0\refint\2025-09-03-bruch-addierer.dll
+C:\Users\undeo\Dejan\!Schule\1AHWII\codes repository\undeo-rep\2025-09-03-3AHWII\2025-09-03-bruch-addierer\obj\Debug\net9.0\2025-09-03-bruch-addierer.pdb
+C:\Users\undeo\Dejan\!Schule\1AHWII\codes repository\undeo-rep\2025-09-03-3AHWII\2025-09-03-bruch-addierer\obj\Debug\net9.0\2025-09-03-bruch-addierer.genruntimeconfig.cache
+C:\Users\undeo\Dejan\!Schule\1AHWII\codes repository\undeo-rep\2025-09-03-3AHWII\2025-09-03-bruch-addierer\obj\Debug\net9.0\ref\2025-09-03-bruch-addierer.dll
