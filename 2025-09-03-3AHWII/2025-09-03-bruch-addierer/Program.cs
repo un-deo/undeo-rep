@@ -2,13 +2,11 @@
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main(string bruchinput1, string bruchinput2)
     {
-        Console.WriteLine("Bruch 1 (im Format 'Ganzzahl Zähler/Nenner', z. B. '1 1/3'):");
-        int[] bruch1 = ParseMixedFraction(Console.ReadLine());
+        int[] bruch1 = ParseMixedFraction(bruchinput1);
 
-        Console.WriteLine("Bruch 2 (im Format 'Ganzzahl Zähler/Nenner', z. B. '1 1/3'):");
-        int[] bruch2 = ParseMixedFraction(Console.ReadLine());
+        int[] bruch2 = ParseMixedFraction(bruchinput2);
 
         int zaehler1 = bruch1[0];
         int nenner1 = bruch1[1];
