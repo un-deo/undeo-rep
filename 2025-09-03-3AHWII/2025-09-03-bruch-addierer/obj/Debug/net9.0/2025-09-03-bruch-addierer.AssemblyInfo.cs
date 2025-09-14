@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("2025-09-03-bruch-addierer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8337dd6c8890b51b3f176ea07541fab1378d6eea")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e3efc594177b798bff3cb543a03668f1e4abbf9b")]
 [assembly: System.Reflection.AssemblyProductAttribute("2025-09-03-bruch-addierer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("2025-09-03-bruch-addierer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
