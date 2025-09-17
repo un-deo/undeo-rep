@@ -100,14 +100,23 @@ public class Program
             }
             else if (parts.Length == 1) 
             {
-                string[] bruch = parts[0].Split('/');
-                int zaehler = int.Parse(bruch[0]);
-                int nenner = int.Parse(bruch[1]);
+                if (parts[0].Contains('/'))
+                {
+                    string[] bruch = parts[0].Split('/');
+                    int zaehler = int.Parse(bruch[0]);
+                    int nenner = int.Parse(bruch[1]);
 
-                if (nenner == 0)
-                    throw new DivideByZeroException("Nenner darf nicht 0 sein.");
+                    if (nenner == 0)
+                        throw new DivideByZeroException("Nenner darf nicht 0 sein.");
 
-                return new int[] { zaehler, nenner };
+                    return new int[] { zaehler, nenner };
+                }
+                else
+                {
+                    // Handle whole numbers as fraction /1
+                    int ganzzahl = int.Parse(parts[0]);
+                    return new int[] { ganzzahl, 1 };
+                }
             }
             else
             {
