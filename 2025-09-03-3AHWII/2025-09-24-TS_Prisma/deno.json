@@ -1,0 +1,10 @@
+{
+  "tasks": {
+    "dev": "deno run --watch main.ts",
+    "prisma": "deno -A prisma"
+  },
+  "imports": {
+    "@std/assert": "jsr:@std/assert@1",
+    "prisma": "npm:prisma@^6.17.0"
+  }
+}
