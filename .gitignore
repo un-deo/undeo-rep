@@ -4,3 +4,4 @@ node_modules
 **/obj/
 *.7z
 .env
+**/dev.db

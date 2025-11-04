@@ -1,0 +1,26 @@
+datasource db {
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client"
+    output   = "client"
+    runtime  = "deno"
+}
+
+model user {
+    id       String @id @default(uuid())
+    name     String @unique
+    email    String @unique
+    password String
+    posts    post[]
+}
+
+model post {
+    id      String @id @default(uuid())
+    title   String
+    content String
+    user    user   @relation(fields: [userId], references: [id])
+    userId  String
+}
