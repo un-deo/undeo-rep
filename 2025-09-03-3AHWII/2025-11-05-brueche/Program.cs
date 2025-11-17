@@ -1,6 +1,6 @@
-﻿class Program
+﻿public class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
         Bruch b1 = new Bruch(args[0]);
         Bruch b2 = new Bruch(args[1]);
