@@ -1,4 +1,4 @@
-class Bruch
+public class Bruch
 {
     // Attribute der Klasse Bruchs
     private int ganzzahl;
