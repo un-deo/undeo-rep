@@ -23,27 +23,18 @@ public class ProgramTests
     [InlineData(new[] { "2/3", "1/a" }, "Ungültiges Format für den Bruchtext.")]
     [InlineData(new[] { "2/3", "1/" }, "Ungültiges Format für den Bruchtext.")]
     [InlineData(new[] { "2/", "1/a" }, "Ungültiges Format für den Bruchtext.")]
-    [InlineData(new[] { "2/3", "1 2 " }, "Ungültiges Format für den Bruchtext. Teile fehlen.")]
+    [InlineData(new[] { "2/3", "1 2" }, "Ungültiges Format für den Bruchtext. Teile fehlen.")]
     [InlineData(new[] { "2/3", "1 2 2" }, "Ungültiges Format für den Bruchtext. Teile fehlen.")]
-
-
-
-
-
 
     public void Main_PrintsCorrectResult(string[] args, string expectedOutput)
     {
-        // 1. Redirect console output
         var output = new StringWriter();
         Console.SetOut(output);
 
-        // 2. Call Main with the test arguments
         Program.Main(args);
 
-        // 3. Capture printed output and remove newline
         string printed = output.ToString().Trim();
 
-        // 4. Assert output matches expected
         Assert.Equal(expectedOutput, printed);
     }
 }
