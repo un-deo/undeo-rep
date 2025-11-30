@@ -7,6 +7,11 @@ using Xunit;
 public class ProgramTests
 {
     [Theory]
+    [InlineData(new[] { "1", "3" }, "Ergebnis: 4")]
+    [InlineData(new[] { "134", "1/2" }, "Ergebnis: 134 1/2")]
+    [InlineData(new[] { "1/2", "3" }, "Ergebnis: 3 1/2")]
+    [InlineData(new[] { "34", "432/645" }, "Ergebnis: 34 144/215")]
+    [InlineData(new[] { "123/456", "789/1011" }, "Ergebnis: 1 2569/51224")]
     [InlineData(new[] { "1/2", "1/3" }, "Ergebnis: 5/6")]
     [InlineData(new[] { "2/4", "1/4" }, "Ergebnis: 3/4")]
     [InlineData(new[] { "3/2", "1/2" }, "Ergebnis: 2")]

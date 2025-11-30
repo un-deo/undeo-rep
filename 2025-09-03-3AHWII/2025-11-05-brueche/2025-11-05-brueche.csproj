@@ -1,17 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<!--<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <OutputType>Exe</OutputType>
     <RootNamespace>_2025_11_05_brueche</RootNamespace>
-    <TargetFramework>net8.0</TargetFramework>
-    <!--
-    This template uses native xUnit.net command line options when using 'dotnet run' and
-    VSTest by default when using 'dotnet test'. For more information on how to enable support
-    for Microsoft Testing Platform, please visit:
-      https://xunit.net/docs/getting-started/v3/microsoft-testing-platform
-    -->
+    <TargetFramework>net9.0</TargetFramework>
+    
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,5 +22,19 @@
     <PackageReference Include="xunit.v3" Version="3.2.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" />
   </ItemGroup>
+
+</Project>
+-->
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>_2025_11_05_brueche</RootNamespace>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <!-- NOTHING related to xUnit here -->
 
 </Project>

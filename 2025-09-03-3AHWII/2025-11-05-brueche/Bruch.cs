@@ -20,11 +20,17 @@ public class Bruch
                 this.zaehler = int.Parse(fractionParts[0]) + (this.ganzzahl * int.Parse(fractionParts[1]));
                 this.nenner = int.Parse(fractionParts[1]);
             }
-            else
+            else if (bruchtext.Contains("/"))
             {
                 string[] teile = bruchtext.Split('/');
                 this.zaehler = int.Parse(teile[0]);
                 this.nenner = int.Parse(teile[1]);
+            }
+            else
+            {
+                this.ganzzahl = int.Parse(bruchtext);
+                this.zaehler = this.ganzzahl;
+                this.nenner = 1;
             }
 
             if (this.nenner == 0)

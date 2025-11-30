@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <OutputType>Exe</OutputType>
+    <!--<OutputType>Exe</OutputType>-->
     <RootNamespace>_2025_11_12_HU_Debugger_Bild_unit_tests</RootNamespace>
     <TargetFramework>net9.0</TargetFramework>
     <!--
