@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <!--<OutputType>Exe</OutputType>-->
     <RootNamespace>_2025_11_12_HU_Debugger_Bild_unit_tests</RootNamespace>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <!--
     This template uses native xUnit.net command line options when using 'dotnet run' and
     VSTest by default when using 'dotnet test'. For more information on how to enable support
