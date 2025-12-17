@@ -11,7 +11,7 @@ public class Program
         }
         catch (FormatException)
         {
-            Console.WriteLine("Bitte eine gültige ganze Zahl als Argument eingeben.");
+            Console.WriteLine("BBitte eine gültige ganze Zahl als Argument eingeben.");
         }
         catch (ArgumentOutOfRangeException ex)
         {
