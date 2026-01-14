@@ -17,9 +17,9 @@ class Program
             int i = 0;
             foreach (var record in records)
             {
-                Console.WriteLine($"{i} - {record.Fullname} | {record.Email} | {record.Telefon} | {record.Adresse}");
+                persons[i] = $"{i} - {record.Fullname} | {record.Email} | {record.Telefon} | {record.Adresse}";
+                Console.WriteLine(persons[i]);
                 Console.WriteLine("--------------------------------------------------------------------------------");
-                persons[i] = record.Fullname;
                 i++;
             }
             Console.WriteLine(persons[10]);
