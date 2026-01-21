@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUSE-SHOP – Regionaler Honig direkt vom Imker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-stone-900">
+    <header
+      class="bg-white/90 backdrop-blur sticky top-0 z-50 border-b border-stone-200"
+    >
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex items-center justify-between h-16 md:h-20">
+          <a href="/" class="flex items-center gap-2 group">
+            <div class="relative">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                class="w-8 h-8 md:w-10 md:h-10 text-amber-600 fill-amber-100 group-hover:fill-amber-200 transition-colors"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+                />
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-amber-700 font-bold text-xs md:text-sm"
+                  >F</span
+                >
+              </div>
+            </div>
+            <span
+              class="font-serif text-xl md:text-2xl font-semibold text-green-900"
+            >
+              FUSE-SHOP
+            </span>
+          </a>
+
+          <nav class="hidden md:flex gap-8">
+            <a href="#" class="text-stone-600 hover:text-green-900 font-medium"
+              >Produkte</a
+            >
+            <a href="#" class="text-stone-600 hover:text-green-900 font-medium"
+              >Über Uns</a
+            >
+            <a href="#" class="text-stone-600 hover:text-green-900 font-medium"
+              >Verkäufer</a
+            >
+          </nav>
+
+          <div class="hidden md:flex gap-2">
+            <button
+              class="px-4 py-2 text-sm font-medium rounded-md hover:bg-stone-100"
+            >
+              Anmelden
+            </button>
+            <button
+              class="px-6 py-2 text-sm font-medium rounded-full bg-amber-600 hover:bg-amber-700 text-white"
+            >
+              Registrieren
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="bg-green-900 py-8">
+  <div class="max-w-7xl mx-auto px-6">
+    <h1 class="font-serif text-3xl font-bold text-white">
+      Mein Profil
+    </h1>
+  </div>
+</section>
+
+<section class="min-h-screen bg-[#F9F9F7] py-8 md:py-12">
+
+  <div class="max-w-2xl mx-auto px-6">
+    <!-- Profil Card -->
+    <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 mb-6">
+
+      <!-- User Info -->
+      <div class="flex items-center gap-4 mb-6">
+        <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-amber-600">
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+
+        <div>
+          <h2 class="font-serif text-xl font-bold text-stone-900">Hans Müller</h2>
+          <p class="text-stone-500">imker@alpenblume.at</p>
+        </div>
+      </div>
+
+      <!-- Role & Verification -->
+      <div class="flex items-center gap-2 p-3 bg-amber-50 rounded-xl">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class="w-5 h-5 text-amber-600">
+          <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+        </svg>
+        <span class="font-medium text-amber-800">Verkäufer</span>
+        <span class="ml-auto text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">Verifiziert</span>
+      </div>
+
+    </div>
+
+    <!-- Profil bearbeiten -->
+    <form>
+      <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-6">
+
+        <h3 class="font-serif text-lg font-bold text-stone-900 mb-6">Profil bearbeiten</h3>
+
+        <div class="space-y-5">
+
+          <!-- Email -->
+          <div class="space-y-2">
+            <label for="email" class="text-sm font-medium">E-Mail</label>
+            <div class="relative">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                   class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-stone-400">
+                <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              </svg>
+              <input type="email" id="email" disabled value="imker@alpenblume.at"
+                     class="flex w-full rounded-md border px-3 py-1 pl-10 h-12 bg-stone-100 text-stone-500 focus:outline-none focus:ring-1 focus:ring-amber-500">
+            </div>
+            <p class="text-xs text-stone-400">E-Mail kann nicht geändert werden</p>
+          </div>
+
+          <!-- Name -->
+          <div class="space-y-2">
+            <label for="name" class="text-sm font-medium">Name</label>
+            <div class="relative">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                   class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-stone-400">
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <input type="text" id="name" placeholder="Ihr Name" value="Hans Müller"
+                     class="flex w-full rounded-md border px-3 py-1 pl-10 h-12 bg-stone-50 border-stone-200 focus:bg-white focus:outline-none focus:ring-1 focus:ring-amber-500">
+            </div>
+          </div>
+
+          <!-- Telefon -->
+          <div class="space-y-2">
+            <label for="phone" class="text-sm font-medium">Telefon</label>
+            <div class="relative">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                   class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-stone-400">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+              <input type="tel" id="phone" placeholder="+43 ..." value="+43 664 123 4567"
+                     class="flex w-full rounded-md border px-3 py-1 pl-10 h-12 bg-stone-50 border-stone-200 focus:bg-white focus:outline-none focus:ring-1 focus:ring-amber-500">
+            </div>
+          </div>
+
+          <!-- Adresse -->
+          <div class="space-y-2">
+            <label for="address" class="text-sm font-medium">Adresse</label>
+            <div class="relative">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                   class="absolute left-3 top-3 w-5 h-5 text-stone-400">
+                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <input type="text" id="address" placeholder="Straße, PLZ, Ort" value="Salzburg, Österreich"
+                     class="flex w-full rounded-md border px-3 py-1 pl-10 h-12 bg-stone-50 border-stone-200 focus:bg-white focus:outline-none focus:ring-1 focus:ring-amber-500">
+            </div>
+          </div>
+
+          <!-- Save Button -->
+          <button type="submit"
+                  class="inline-flex items-center justify-center gap-2 w-full h-12 px-4 bg-amber-600 text-white rounded-full font-medium shadow-lg hover:bg-amber-700 hover:shadow-amber-600/30 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+              <path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"></path>
+              <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"></path>
+              <path d="M7 3v4a1 1 0 0 0 1 1h7"></path>
+            </svg>
+            Änderungen speichern
+          </button>
+
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+</section>
+   <footer class="bg-green-900 text-green-200">
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <!-- Logo -->
+      <div class="lg:col-span-1">
+        <a class="flex items-center gap-2 mb-4" href="/">
+          <div class="relative">
+            <!-- Header Logo SVG -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              class="w-10 h-10 text-amber-600 fill-amber-100"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+              />
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <span class="text-amber-700 font-bold text-xs md:text-sm">F</span>
+            </div>
+          </div>
+          <span class="font-serif text-2xl font-semibold tracking-tight">FUSE-SHOP</span>
+        </a>
+        <p class="text-green-200 text-sm leading-relaxed">
+          Österreichs Marktplatz für regionale Honig- und Imkereiprodukte. Direkt vom Imker zu Ihnen.
+        </p>
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <h4 class="font-serif text-lg font-semibold mb-4">Navigation</h4>
+        <ul class="space-y-2">
+          <li><a href="/produkte" class="text-green-200 hover:text-amber-400 text-sm">Alle Produkte</a></li>
+          <li><a href="/ueber-uns" class="text-green-200 hover:text-amber-400 text-sm">Über Uns</a></li>
+          <li><a href="/verkaeufer-werden" class="text-green-200 hover:text-amber-400 text-sm">Verkäufer werden</a></li>
+        </ul>
+      </div>
+
+      <!-- Kategorien -->
+      <div>
+        <h4 class="font-serif text-lg font-semibold mb-4">Kategorien</h4>
+        <ul class="space-y-2">
+          <li><a href="/produkte?category=Honig" class="text-green-200 hover:text-amber-400 text-sm">Honig</a></li>
+          <li><a href="/produkte?category=Propolis" class="text-green-200 hover:text-amber-400 text-sm">Propolis</a></li>
+          <li><a href="/produkte?category=Bienenwachs" class="text-green-200 hover:text-amber-400 text-sm">Bienenwachs</a></li>
+          <li><a href="/produkte?category=Pollen" class="text-green-200 hover:text-amber-400 text-sm">Pollen</a></li>
+          <li><a href="/produkte?category=Met" class="text-green-200 hover:text-amber-400 text-sm">Met</a></li>
+        </ul>
+      </div>
+
+      <!-- Kontakt -->
+      <div>
+        <h4 class="font-serif text-lg font-semibold mb-4">Kontakt</h4>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5">
+              <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span class="text-green-200 text-sm">Musterstraße 123<br>1010 Wien, Österreich</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone w-5 h-5 text-amber-500 flex-shrink-0">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <a href="tel:+431234567" class="text-green-200 hover:text-amber-400 text-sm">+43 1 234 567</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail w-5 h-5 text-amber-500 flex-shrink-0">
+              <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+            </svg>
+            <a href="mailto:info@fuse-shop.at" class="text-green-200 hover:text-amber-400 text-sm">info@fuse-shop.at</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="border-t border-green-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-green-300 text-sm">© 2026 FUSE-SHOP. Alle Rechte vorbehalten.</p>
+      <div class="flex items-center gap-6">
+        <a href="/datenschutz" class="text-green-300 hover:text-amber-400 text-sm">Datenschutz</a>
+        <a href="/impressum" class="text-green-300 hover:text-amber-400 text-sm">Impressum</a>
+        <a href="/agb" class="text-green-300 hover:text-amber-400 text-sm">AGB</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
