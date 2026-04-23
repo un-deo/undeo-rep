@@ -1,0 +1,134 @@
+@page "/freetogame"
+@rendermode InteractiveServer
+@using System.Net.Http.Json
+@using System.Text.Json.Serialization
+@inject HttpClient Http
+
+<PageTitle>FreeToPlay Games</PageTitle>
+
+<h1>FreeToPlay Games</h1>
+
+<div class="mb-3 row">
+    <div class="col-sm-4">
+        <input class="form-control" placeholder="Search by title" @bind="search" />
+    </div>
+    <div class="col-sm-3">
+        <select class="form-select" @bind="platform">
+            <option value="">All platforms</option>
+            <option value="pc">PC (Windows)</option>
+            <option value="browser">Browser</option>
+        </select>
+    </div>
+    <div class="col-sm-2">
+        <select class="form-select" @bind="genre">
+            <option value="">All genres</option>
+            <option value="shooter">Shooter</option>
+            <option value="racing">Racing</option>
+            <option value="mmo">MMO</option>
+        </select>
+    </div>
+    <div class="col-sm-3 text-end">
+        <button class="btn btn-primary" @onclick="ApplyFilter">Filter</button>
+    </div>
+</div>
+
+@if (loading)
+{
+    <p><em>Loading...</em></p>
+}
+else if (error != null)
+{
+    <div class="alert alert-danger">@error</div>
+}
+else if (games?.Any() == true)
+{
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th>Thumbnail</th>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Platform</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var g in filtered)
+            {
+                <tr>
+                    <td style="width:72px"><img src="@g.Thumbnail" style="max-width:72px" alt="thumb" /></td>
+                    <td>@g.Title</td>
+                    <td>@g.Genre</td>
+                    <td>@g.Platform</td>
+                    <td>@g.ShortDescription</td>
+                    <td>
+                        @if (!string.IsNullOrWhiteSpace(g.GameUrl))
+                        {
+                            <a target="_blank" rel="noopener noreferrer" href="@g.GameUrl" class="btn btn-sm btn-outline-primary">Open</a>
+                        }
+                        else
+                        {
+                            <button class="btn btn-sm btn-outline-secondary" disabled>Open</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    List<Game>? games;
+    List<Game> filtered = new();
+    bool loading = false;
+    string? error;
+
+    string search = "";
+    string platform = "";
+    string genre = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        loading = true;
+        try
+        {
+            // The API returns an array of games
+            var url = "https://www.freetogame.com/api/games";
+            games = await Http.GetFromJsonAsync<List<Game>>(url);
+            if (games == null) games = new List<Game>();
+            filtered = new List<Game>(games);
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+
+    void ApplyFilter()
+    {
+        if (games == null) return;
+        var q = games.AsEnumerable();
+        if (!string.IsNullOrWhiteSpace(search)) q = q.Where(g => g.Title?.Contains(search, StringComparison.OrdinalIgnoreCase) == true);
+        if (!string.IsNullOrWhiteSpace(platform)) q = q.Where(g => g.Platform?.Equals(platform, StringComparison.OrdinalIgnoreCase) == true || g.Platform?.Contains(platform, StringComparison.OrdinalIgnoreCase) == true);
+        if (!string.IsNullOrWhiteSpace(genre)) q = q.Where(g => g.Genre?.Equals(genre, StringComparison.OrdinalIgnoreCase) == true || g.Genre?.Contains(genre, StringComparison.OrdinalIgnoreCase) == true);
+        filtered = q.ToList();
+    }
+
+    class Game
+    {
+        public int Id { get; set; }
+        public string? Title { get; set; }
+        public string? Thumbnail { get; set; }
+        [JsonPropertyName("short_description")]
+        public string? ShortDescription { get; set; }
+        [JsonPropertyName("game_url")]
+        public string? GameUrl { get; set; }
+        public string? Genre { get; set; }
+        public string? Platform { get; set; }
+    }
+}

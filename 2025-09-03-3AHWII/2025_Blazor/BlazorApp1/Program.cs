@@ -5,6 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+// Register a shared HttpClient for server-side API calls
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 

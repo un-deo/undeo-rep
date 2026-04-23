@@ -1,0 +1,140 @@
+@page "/player"
+@rendermode InteractiveServer
+
+@using System.Net.Http.Json
+@inject HttpClient Http
+
+<PageTitle>Player Lookup</PageTitle>
+
+<h1>Player Lookup</h1>
+
+<div class="mb-3 row">
+    <div class="col-sm-3">
+        <select class="form-select" @bind="platform">
+            <option value="minecraft">minecraft</option>
+            <option value="steam">steam</option>
+            <option value="xbox">xbox"</option>
+            <option value="psn">psn</option>
+        </select>
+    </div>
+    <div class="col-sm-5">
+        <input class="form-control" placeholder="username" @bind="username" />
+    </div>
+    <div class="col-sm-2">
+        <button class="btn btn-primary" @onclick="Lookup">Lookup</button>
+    </div>
+</div>
+
+@if (loading)
+{
+    <p><em>Loading...</em></p>
+}
+else if (error != null)
+{
+    <div class="alert alert-danger">@error</div>
+}
+else if (player != null)
+{
+    <div class="card" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                @if (!string.IsNullOrEmpty(player.Avatar))
+                {
+                    <img src="@player.Avatar" class="img-fluid rounded-start" alt="avatar" />
+                }
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">@player.Username</h5>
+                    <p class="card-text"><small class="text-muted">ID: @player.Id</small></p>
+                    @if (player.Meta?.Any() == true)
+                    {
+                        <ul>
+                            @foreach (var kv in player.Meta)
+                            {
+                                <li><strong>@kv.Key:</strong> @kv.Value</li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    string platform = "minecraft";
+    string username = "";
+    bool loading = false;
+    string? error;
+
+    Player? player;
+
+    async Task Lookup()
+    {
+        error = null;
+        player = null;
+        if (string.IsNullOrWhiteSpace(username))
+        {
+            error = "Please enter a username.";
+            return;
+        }
+
+        loading = true;
+        try
+        {
+            var url = $"https://playerdb.co/api/player/{platform}/{Uri.EscapeDataString(username)}";
+            var resp = await Http.GetFromJsonAsync<PlayerDbResponse>(url);
+            if (resp == null || !resp.Success || resp.Data?.Player == null)
+            {
+                error = "Player not found or API error.";
+            }
+            else
+            {
+                player = new Player
+                {
+                    Id = resp.Data.Player.Id,
+                    Username = resp.Data.Player.Username,
+                    Avatar = resp.Data.Player.Avatar,
+                    Meta = resp.Data.Player.Meta
+                };
+            }
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+
+    // Minimal DTOs for the response
+    class PlayerDbResponse
+    {
+        public bool Success { get; set; }
+        public PlayerData? Data { get; set; }
+    }
+
+    class PlayerData
+    {
+        public InnerPlayer? Player { get; set; }
+    }
+
+    class InnerPlayer
+    {
+        public string? Id { get; set; }
+        public string? Username { get; set; }
+        public string? Avatar { get; set; }
+        public Dictionary<string, object>? Meta { get; set; }
+    }
+
+    class Player
+    {
+        public string? Id { get; set; }
+        public string? Username { get; set; }
+        public string? Avatar { get; set; }
+        public Dictionary<string, object>? Meta { get; set; }
+    }
+}

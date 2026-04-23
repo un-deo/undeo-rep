@@ -1,0 +1,138 @@
+@page "/server"
+@rendermode InteractiveServer
+@using System.Net.Http.Json
+@inject HttpClient Http
+
+<PageTitle>Server Status</PageTitle>
+
+<h1>Server Status</h1>
+
+<div class="mb-3 row">
+    <div class="col-sm-7">
+        <input class="form-control" placeholder="server-address or host:port" @bind="address" />
+    </div>
+    <div class="col-sm-2">
+        <button class="btn btn-primary" @onclick="Check">Check</button>
+    </div>
+    <div class="col-sm-3 text-end">
+        @if (status != null)
+        {
+            <span class="badge @(status.Online ? "bg-success" : "bg-danger")">@(status.Online ? "Online" : "Offline")</span>
+        }
+    </div>
+</div>
+
+@if (loading)
+{
+    <p><em>Loading...</em></p>
+}
+else if (error != null)
+{
+    <div class="alert alert-danger">@error</div>
+}
+else if (status != null)
+{
+    <table class="table table-striped">
+        <tbody>
+            <tr><th>Address</th><td>@status.Ip:@status.Port</td></tr>
+            <tr><th>Version</th><td>@status.Version</td></tr>
+            <tr><th>Players</th><td>@status.PlayersOnline / @status.PlayersMax</td></tr>
+            <tr><th>MOTD</th><td>
+                @if (status.Motd?.Any() == true)
+                {
+                    foreach (var line in status.Motd)
+                    {
+                        <div>@line</div>
+                    }
+                }
+            </td></tr>
+        </tbody>
+    </table>
+}
+
+@code {
+    string address = "";
+    bool loading = false;
+    string? error;
+
+    ServerInfo? status;
+
+    async Task Check()
+    {
+        error = null;
+        status = null;
+        if (string.IsNullOrWhiteSpace(address))
+        {
+            error = "Please enter a server address.";
+            return;
+        }
+
+        loading = true;
+        try
+        {
+            var url = $"https://api.mcsrvstat.us/2/{Uri.EscapeDataString(address)}";
+            // The API requires a descriptive User-Agent header or it returns 403.
+            using var req = new HttpRequestMessage(HttpMethod.Get, url);
+            req.Headers.UserAgent.ParseAdd("BlazorApp1/1.0 (+https://example.com; contact: you@example.com)");
+
+            using var respMsg = await Http.SendAsync(req);
+            if (!respMsg.IsSuccessStatusCode)
+            {
+                error = $"API returned {(int)respMsg.StatusCode} {respMsg.ReasonPhrase}";
+            }
+            else
+            {
+                var resp = await respMsg.Content.ReadFromJsonAsync<McResp>();
+                if (resp == null)
+                {
+                    error = "No response from API.";
+                }
+                else
+                {
+                    status = new ServerInfo
+                    {
+                        Online = resp.Online,
+                        Ip = resp.Ip ?? address,
+                        Port = resp.Port ?? 25565,
+                        Version = resp.Version,
+                        PlayersOnline = resp.Players?.Online ?? 0,
+                        PlayersMax = resp.Players?.Max ?? 0,
+                        Motd = resp.Motd?.Clean
+                    };
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+
+    class McResp
+    {
+        public bool Online { get; set; }
+        public string? Ip { get; set; }
+        public int? Port { get; set; }
+        public string? Version { get; set; }
+        public McPlayers? Players { get; set; }
+        public McMotd? Motd { get; set; }
+    }
+
+    class McPlayers { public int Online { get; set; } public int Max { get; set; } }
+    class McMotd { public string[]? Raw { get; set; } public string[]? Clean { get; set; } }
+
+    class ServerInfo
+    {
+        public bool Online { get; set; }
+        public string? Ip { get; set; }
+        public int Port { get; set; }
+        public string? Version { get; set; }
+        public int PlayersOnline { get; set; }
+        public int PlayersMax { get; set; }
+        public string[]? Motd { get; set; }
+    }
+}
