@@ -3,19 +3,70 @@
 
 <h3>Todo (@todos.Count(todo => !todo.IsDone))</h3>
 
-<ul>
-    @foreach (var todo in todos)
-    {
-        <li>
-            <input type="checkbox"
-                   @bind="todo.IsDone" />
-            <input @bind="todo.Title" />
-        </li>
-    }
-</ul>
+<div class="mb-3 row g-2 align-items-center">
+    <div class="col-sm-7">
+        <input class="form-control" placeholder="Add a new task"
+               @bind:event="oninput"
+               @bind="newTodo"
+               @onkeydown="OnKeyDownAdd" />
+    </div>
+    <div class="col-sm-2">
+        <button class="btn btn-primary w-100" @onclick="AddTodo">Add</button>
+    </div>
+    <div class="col-sm-3 text-end">
+        <small class="text-muted">Pending: @todos.Count(t => !t.IsDone)</small>
+    </div>
+</div>
 
-<input @bind="newTodo" />
-<button @onclick="AddTodo">Add todo</button>
+@if (todos.Any(t => !t.IsDone))
+{
+    <div class="mb-3">
+        <h5>Pending Tasks</h5>
+        <ul class="list-group">
+            @foreach (var t in todos.Where(t => !t.IsDone))
+            {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <input class="form-check-input me-2" type="checkbox" @bind="t.IsDone" />
+                        <span>@t.Title</span>
+                    </div>
+                    <div>
+                        <button class="btn btn-sm btn-outline-secondary" @onclick="() => EditTask(t)">Edit</button>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+}
+
+<div>
+    <h5>All Tasks</h5>
+    <div class="row row-cols-1 row-cols-md-2 g-2">
+        @foreach (var todo in todos)
+        {
+            <div class="col">
+                <div class="card">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <input class="form-check-input me-2" type="checkbox" @bind="todo.IsDone" />
+                            @if (todo.IsDone)
+                            {
+                                <s>@todo.Title</s>
+                            }
+                            else
+                            {
+                                <span>@todo.Title</span>
+                            }
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-outline-danger" @onclick="() => RemoveTodo(todo)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
 
 @code {
     private List<TodoItem> todos = new();
@@ -27,6 +78,26 @@
         {
             todos.Add(new TodoItem { Title = newTodo });
             newTodo = string.Empty;
+        }
+    }
+
+    void RemoveTodo(TodoItem t)
+    {
+        todos.Remove(t);
+    }
+
+    void EditTask(TodoItem t)
+    {
+        // For demo: focus or open edit modal could go here. Keep simple for now.
+    }
+
+    async Task OnKeyDownAdd(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            AddTodo();
+            // small delay to let UI update if needed
+            await Task.Yield();
         }
     }
 }

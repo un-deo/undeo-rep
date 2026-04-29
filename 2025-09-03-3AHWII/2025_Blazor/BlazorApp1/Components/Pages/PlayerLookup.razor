@@ -13,12 +13,16 @@
         <select class="form-select" @bind="platform">
             <option value="minecraft">minecraft</option>
             <option value="steam">steam</option>
-            <option value="xbox">xbox"</option>
-            <option value="psn">psn</option>
+            <option value="xbox">xbox</option>
+            <!-- PSN removed: playerdb.co does not reliably support PSN lookups -->
         </select>
     </div>
     <div class="col-sm-5">
-        <input class="form-control" placeholder="username" @bind="username" />
+        <input class="form-control"
+               placeholder="@((platform == "steam") ? "Steam ID" : "username")"
+               @bind:event="oninput"
+               @bind="username"
+               @onkeydown="OnKeyDown" />
     </div>
     <div class="col-sm-2">
         <button class="btn btn-primary" @onclick="Lookup">Lookup</button>
@@ -84,20 +88,32 @@ else if (player != null)
         try
         {
             var url = $"https://playerdb.co/api/player/{platform}/{Uri.EscapeDataString(username)}";
-            var resp = await Http.GetFromJsonAsync<PlayerDbResponse>(url);
-            if (resp == null || !resp.Success || resp.Data?.Player == null)
+            // PlayerDB recommends an identifying User-Agent. Use HttpRequestMessage so we can set headers and inspect status codes.
+            using var req = new HttpRequestMessage(HttpMethod.Get, url);
+            req.Headers.UserAgent.ParseAdd("BlazorApp1/1.0 (+https://example.com; contact: you@example.com)");
+
+            using var respMsg = await Http.SendAsync(req);
+            if (!respMsg.IsSuccessStatusCode)
             {
-                error = "Player not found or API error.";
+                error = $"API returned {(int)respMsg.StatusCode} {respMsg.ReasonPhrase}";
             }
             else
             {
-                player = new Player
+                var resp = await respMsg.Content.ReadFromJsonAsync<PlayerDbResponse>();
+                if (resp == null || !resp.Success || resp.Data?.Player == null)
                 {
-                    Id = resp.Data.Player.Id,
-                    Username = resp.Data.Player.Username,
-                    Avatar = resp.Data.Player.Avatar,
-                    Meta = resp.Data.Player.Meta
-                };
+                    error = "Player not found or API error.";
+                }
+                else
+                {
+                    player = new Player
+                    {
+                        Id = resp.Data.Player.Id,
+                        Username = resp.Data.Player.Username,
+                        Avatar = resp.Data.Player.Avatar,
+                        Meta = resp.Data.Player.Meta
+                    };
+                }
             }
         }
         catch (Exception ex)
@@ -107,6 +123,15 @@ else if (player != null)
         finally
         {
             loading = false;
+        }
+    }
+
+    async Task OnKeyDown(KeyboardEventArgs e)
+    {
+        // Trigger lookup when Enter is pressed
+        if (e.Key == "Enter")
+        {
+            await Lookup();
         }
     }
 

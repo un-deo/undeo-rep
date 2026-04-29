@@ -1,57 +1,132 @@
 ﻿@page "/weather"
 @attribute [StreamRendering]
+@inject HttpClient Http
 
 <PageTitle>Weather</PageTitle>
 
+@* Location is fixed to Vienna for this demo *@
 <h1>Weather</h1>
+<h5 class="text-muted">Vienna, Austria</h5>
 
-<p>This component demonstrates showing data.</p>
+<p>This component displays the daily forecast for Vienna (fetched from the Open-Meteo public API).</p>
 
-@if (forecasts == null)
+@if (loading)
 {
     <p><em>Loading...</em></p>
 }
-else
+else if (error != null)
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <div class="alert alert-danger">@error</div>
+}
+else if (forecasts != null)
+{
+    <div class="row row-cols-1 row-cols-md-3 g-3">
+        @foreach (var forecast in forecasts)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@forecast.Date.ToString("ddd, MMM d")</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@forecast.Summary</h6>
+                        <p class="card-text display-6 mb-0">@forecast.TemperatureC°C</p>
+                        <small class="text-muted">@forecast.TemperatureF°F</small>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 }
 
 @code {
     private WeatherForecast[]? forecasts;
+    private bool loading = true;
+    private string? error;
+
+    // Vienna coordinates
+    const double Lat = 48.2082;
+    const double Lon = 16.3738;
 
     protected override async Task OnInitializedAsync()
     {
-        // Simulate asynchronous loading to demonstrate streaming rendering
-        await Task.Delay(500);
-
-        var startDate = DateOnly.FromDateTime(DateTime.Now);
-        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
-        forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        try
         {
-            Date = startDate.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = summaries[Random.Shared.Next(summaries.Length)]
-        }).ToArray();
+            // Request daily max/min temps and weathercode for Vienna
+            // Use invariant culture to ensure decimal separator is a dot (avoid 400 from locales using comma)
+            var latStr = Lat.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            var lonStr = Lon.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            var url = $"https://api.open-meteo.com/v1/forecast?latitude={latStr}&longitude={lonStr}&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto";
+            var resp = await Http.GetFromJsonAsync<OpenMeteoResp>(url);
+            if (resp?.daily != null && resp.daily.time?.Length > 0)
+            {
+                var list = new List<WeatherForecast>();
+                for (int i = 0; i < resp.daily.time.Length && i < 7; i++)
+                {
+                    var date = DateOnly.Parse(resp.daily.time[i]);
+                    var max = resp.daily.temperature_2m_max?[i] ?? 0;
+                    var min = resp.daily.temperature_2m_min?[i] ?? 0;
+                    var code = resp.daily.weathercode?[i] ?? 0;
+                    list.Add(new WeatherForecast
+                    {
+                        Date = date,
+                        TemperatureC = (int)Math.Round((max + min) / 2.0),
+                        Summary = WeatherCodeToDescription(code)
+                    });
+                }
+                forecasts = list.ToArray();
+            }
+            else
+            {
+                error = "No weather data received.";
+            }
+        }
+        catch (Exception ex)
+        {
+            // Fallback to sample data on error
+            error = "Failed to fetch weather data: " + ex.Message;
+            var startDate = DateOnly.FromDateTime(DateTime.Now);
+            var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
+            forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            {
+                Date = startDate.AddDays(index),
+                TemperatureC = Random.Shared.Next(-20, 55),
+                Summary = summaries[Random.Shared.Next(summaries.Length)]
+            }).ToArray();
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+
+    static string WeatherCodeToDescription(int code)
+    {
+        return code switch
+        {
+            0 => "Clear sky",
+            1 => "Mainly clear",
+            2 => "Partly cloudy",
+            3 => "Overcast",
+            45 or 48 => "Fog",
+            >= 51 and <= 67 => "Drizzle",
+            >= 71 and <= 77 => "Snow",
+            >= 80 and <= 82 => "Rain showers",
+            95 => "Thunderstorm",
+            96 or 99 => "Thunderstorm with hail",
+            _ => "Variable"
+        };
+    }
+
+    private class OpenMeteoResp
+    {
+        public Daily? daily { get; set; }
+    }
+
+    private class Daily
+    {
+        public string[]? time { get; set; }
+        public double[]? temperature_2m_max { get; set; }
+        public double[]? temperature_2m_min { get; set; }
+        public int[]? weathercode { get; set; }
     }
 
     private class WeatherForecast
