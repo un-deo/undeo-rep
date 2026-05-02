@@ -1,0 +1,142 @@
+@page "/steam-playtime"
+@rendermode InteractiveServer
+@using System.Net.Http.Json
+@inject HttpClient Http
+
+<PageTitle>Steam Playtime</PageTitle>
+
+<h1>Steam Playtime</h1>
+
+<p>Enter a Steam Web API key and a SteamID64 to list owned games and playtime. The key is used only for the session and not persisted.</p>
+
+<div class="mb-3 row g-2 align-items-center">
+    <div class="col-sm-4">
+        <input class="form-control" placeholder="Steam Web API Key" @bind:event="oninput" @bind="apiKey" />
+    </div>
+    <div class="col-sm-4">
+        <input class="form-control" placeholder="SteamID64 (e.g. 7656119...)" @bind:event="oninput" @bind="steamId" @onkeydown="OnKeyDownLookup" />
+    </div>
+    <div class="col-sm-2">
+        <button class="btn btn-primary w-100" @onclick="Lookup">Lookup</button>
+    </div>
+    <div class="col-sm-2 text-end">
+        @if (games != null)
+        {
+            <small class="text-muted">Games: @games.Count</small>
+        }
+    </div>
+</div>
+
+@if (loading)
+{
+    <p><em>Loading...</em></p>
+}
+else if (error != null)
+{
+    <div class="alert alert-danger">@error</div>
+}
+else if (games != null)
+{
+    <div class="mb-3">
+        <input class="form-control mb-2" placeholder="Filter games by name..." @bind:event="oninput" @bind="filter" />
+        <div class="list-group">
+            @foreach (var g in games.Where(g => string.IsNullOrWhiteSpace(filter) || g.Name?.Contains(filter, StringComparison.OrdinalIgnoreCase) == true))
+            {
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <img src="@g.IconUrl" style="width:48px;height:24px;object-fit:cover;margin-right:8px;" alt="icon" />
+                        <strong>@g.Name</strong>
+                        <div class="text-muted small">AppID: @g.AppId</div>
+                    </div>
+                    <div>
+                        <div>@FormatPlaytime(g.PlaytimeForever)</div>
+                        @if (g.Playtime2Weeks > 0)
+                        {
+                            <div class="text-muted small">2w: @FormatPlaytime(g.Playtime2Weeks)</div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@code {
+    string apiKey = "";
+    string steamId = "";
+    string filter = "";
+    bool loading = false;
+    string? error;
+
+    List<GameInfo>? games;
+
+    async Task Lookup()
+    {
+        error = null;
+        games = null;
+        if (string.IsNullOrWhiteSpace(apiKey) || string.IsNullOrWhiteSpace(steamId))
+        {
+            error = "Please enter both API key and SteamID64.";
+            return;
+        }
+
+        loading = true;
+        try
+        {
+            var url = $"https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={Uri.EscapeDataString(apiKey)}&steamid={Uri.EscapeDataString(steamId)}&include_appinfo=1&include_played_free_games=1&format=json";
+            using var req = new HttpRequestMessage(HttpMethod.Get, url);
+            req.Headers.UserAgent.ParseAdd("BlazorApp1/1.0 (+https://example.com; contact: you@example.com)");
+            using var respMsg = await Http.SendAsync(req);
+            if (!respMsg.IsSuccessStatusCode)
+            {
+                error = $"Steam API returned {(int)respMsg.StatusCode} {respMsg.ReasonPhrase}";
+            }
+            else
+            {
+                var resp = await respMsg.Content.ReadFromJsonAsync<SteamOwnedGamesResp>();
+                if (resp?.response?.games == null)
+                {
+                    error = "No games returned. Ensure profile visibility is public and the SteamID is correct.";
+                }
+                else
+                {
+                    games = resp.response.games.Select(g => new GameInfo
+                    {
+                        AppId = g.appid,
+                        Name = g.name,
+                        PlaytimeForever = g.playtime_forever,
+                        Playtime2Weeks = g.playtime_2weeks ?? 0,
+                        IconUrl = g.img_icon_url != null ? $"https://media.steampowered.com/steamcommunity/public/images/apps/{g.appid}/{g.img_icon_url}.jpg" : ""
+                    }).OrderByDescending(g => g.PlaytimeForever).ToList();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+
+    async Task OnKeyDownLookup(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter") await Lookup();
+    }
+
+    string FormatPlaytime(int minutes)
+    {
+        if (minutes <= 0) return "0 min";
+        var hours = minutes / 60;
+        var mins = minutes % 60;
+        if (hours > 0) return $"{hours}h {mins}m";
+        return $"{mins}m";
+    }
+
+    class SteamOwnedGamesResp { public Resp? response { get; set; } }
+    class Resp { public OwnedGame[]? games { get; set; } }
+    class OwnedGame { public int appid { get; set; } public string? name { get; set; } public int playtime_forever { get; set; } public int? playtime_2weeks { get; set; } public string? img_icon_url { get; set; } }
+    class GameInfo { public int AppId { get; set; } public string? Name { get; set; } public int PlaytimeForever { get; set; } public int Playtime2Weeks { get; set; } public string? IconUrl { get; set; } }
+}

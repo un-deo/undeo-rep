@@ -7,7 +7,7 @@ BlazorApp1 is a small server-hosted Blazor application (ASP.NET Core, .NET 8) de
 
 Key features
 ------------
-- Home page with an example Counter component
+- Home page witch an example Counter component
 - Counter (interactive server render mode) with configurable increment
 - Weather page demonstrating streaming rendering and generated sample data
 - Todo list (local state) with add / toggle functionality
