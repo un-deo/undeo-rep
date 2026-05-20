@@ -2,7 +2,10 @@
 @rendermode InteractiveServer
 
 @using System.Net.Http.Json
+@using Microsoft.EntityFrameworkCore
+@using System.Linq
 @inject HttpClient Http
+@inject BlazorApp1.Data.AppDbContext Db
 
 <PageTitle>Player Lookup</PageTitle>
 
@@ -51,6 +54,9 @@ else if (player != null)
                 <div class="card-body">
                     <h5 class="card-title">@player.Username</h5>
                     <p class="card-text"><small class="text-muted">ID: @player.Id</small></p>
+                    <p>
+                        <button class="btn btn-sm btn-outline-success" @onclick="SavePlayerAsync" disabled="@isPlayerSaved">@(isPlayerSaved ? "Saved" : "Save")</button>
+                    </p>
                     @if (player.Meta?.Any() == true)
                     {
                         <ul>
@@ -73,6 +79,7 @@ else if (player != null)
     string? error;
 
     Player? player;
+    bool isPlayerSaved = false;
 
     async Task Lookup()
     {
@@ -107,12 +114,20 @@ else if (player != null)
                 else
                 {
                     player = new Player
+                     {
+                         Id = resp.Data.Player.Id,
+                         Username = resp.Data.Player.Username,
+                         Avatar = resp.Data.Player.Avatar,
+                         Meta = resp.Data.Player.Meta
+                     };
+                    try
                     {
-                        Id = resp.Data.Player.Id,
-                        Username = resp.Data.Player.Username,
-                        Avatar = resp.Data.Player.Avatar,
-                        Meta = resp.Data.Player.Meta
-                    };
+                        isPlayerSaved = await Db.SavedPlayers.AnyAsync(p => p.SourcePlayerId == player.Id);
+                    }
+                    catch
+                    {
+                        isPlayerSaved = false;
+                    }
                 }
             }
         }
@@ -161,5 +176,32 @@ else if (player != null)
         public string? Username { get; set; }
         public string? Avatar { get; set; }
         public Dictionary<string, object>? Meta { get; set; }
+    }
+
+    async Task SavePlayerAsync()
+    {
+        if (player == null) return;
+        if (isPlayerSaved) return;
+
+        var entity = new BlazorApp1.Models.SavedPlayer
+        {
+            SourcePlayerId = player.Id,
+            Username = player.Username,
+            Avatar = player.Avatar,
+            MetaJson = System.Text.Json.JsonSerializer.Serialize(player.Meta ?? new Dictionary<string, object>()),
+            SavedAt = DateTime.UtcNow
+        };
+
+        try
+        {
+            Db.SavedPlayers.Add(entity);
+            await Db.SaveChangesAsync();
+            isPlayerSaved = true;
+            StateHasChanged();
+        }
+        catch
+        {
+            // ignore failures for now
+        }
     }
 }

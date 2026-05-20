@@ -1,0 +1,209 @@
+@page "/saved"
+@rendermode InteractiveServer
+
+@using Microsoft.EntityFrameworkCore
+@inject BlazorApp1.Data.AppDbContext Db
+
+<PageTitle>Saved Items</PageTitle>
+
+<h1>Saved Items</h1>
+
+<h3>Saved Games</h3>
+@if (savedGames == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (!savedGames.Any())
+{
+    <p>No saved games.</p>
+}
+else
+{
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Platform</th>
+                <th>Saved</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var g in savedGames)
+            {
+                <tr>
+                    <td style="width:64px"><img src="@g.Thumbnail" style="max-width:64px" alt="thumb" /></td>
+                    <td>@g.Title</td>
+                    <td>@g.Genre</td>
+                    <td>@g.Platform</td>
+                    <td>@g.SavedAt.ToLocalTime().ToString()</td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            @if (!string.IsNullOrWhiteSpace(g.GameUrl))
+                            {
+                                <a target="_blank" rel="noopener noreferrer" href="@g.GameUrl" class="btn btn-sm btn-outline-primary">Open</a>
+                            }
+                            <button class="btn btn-sm btn-outline-danger" @onclick="() => RemoveGameAsync(g.Id)">Remove</button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<h3>Saved Players</h3>
+@if (savedPlayers == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (!savedPlayers.Any())
+{
+    <p>No saved players.</p>
+}
+else
+{
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th>Avatar</th>
+                <th>Username</th>
+                <th>ID</th>
+                <th>Info</th>
+                <th>Saved</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in savedPlayers)
+            {
+                var meta = (string.IsNullOrEmpty(p.MetaJson)) ? null : System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(p.MetaJson!);
+                string profileUrl = GetMetaValue(meta, "profileurl");
+                string personastate = GetMetaValue(meta, "personastate");
+                string timecreated = GetMetaValue(meta, "timecreated");
+
+                <tr class="clickable-row" style="cursor:pointer" @onclick="() => TogglePlayerExpand(p.Id)">
+                    <td style="width:64px">
+                        @if (!string.IsNullOrEmpty(p.Avatar))
+                        {
+                            <img src="@p.Avatar" style="max-width:64px" alt="avatar" />
+                        }
+                    </td>
+                    <td>@(string.IsNullOrEmpty(p.Username) ? "(unknown)" : p.Username)</td>
+                    <td>@p.SourcePlayerId</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(profileUrl))
+                        {
+                            <a target="_blank" rel="noopener noreferrer" href="@profileUrl">Profile</a>
+                        }
+                        @if (!string.IsNullOrEmpty(personastate))
+                        {
+                            <span class="ms-2">State: @personastate</span>
+                        }
+                        @if (!string.IsNullOrEmpty(timecreated))
+                        {
+                            if (long.TryParse(timecreated, out var unix))
+                            {
+                                <span class="ms-2">Created: @DateTimeOffset.FromUnixTimeSeconds(unix).ToLocalTime().DateTime.ToShortDateString()</span>
+                            }
+                            else
+                            {
+                                <span class="ms-2">Created: @timecreated</span>
+                            }
+                        }
+                    </td>
+                    <td>@p.SavedAt.ToLocalTime().ToString()</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-danger" @onclick:stopPropagation="true" @onclick="() => RemovePlayerAsync(p.Id)">Remove</button>
+                    </td>
+                </tr>
+
+                @if (expandedPlayers.Contains(p.Id))
+                {
+                    <tr>
+                        <td colspan="6">
+                            <div class="p-2">
+                                <h6>Full Profile Data</h6>
+                                @if (meta == null || !meta.Any())
+                                {
+                                    <div><em>No additional metadata available.</em></div>
+                                }
+                                else
+                                {
+                                    <table class="table table-sm">
+                                        <tbody>
+                                            @foreach (var kv in meta)
+                                            {
+                                                <tr>
+                                                    <th style="width:200px">@kv.Key</th>
+                                                    <td>@(kv.Value?.ToString() ?? string.Empty)</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    List<BlazorApp1.Models.SavedGame>? savedGames;
+    List<BlazorApp1.Models.SavedPlayer>? savedPlayers;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadAsync();
+    }
+
+    async Task LoadAsync()
+    {
+        savedGames = await Db.SavedGames.OrderByDescending(g => g.SavedAt).ToListAsync();
+        savedPlayers = await Db.SavedPlayers.OrderByDescending(p => p.SavedAt).ToListAsync();
+    }
+
+    async Task RemoveGameAsync(int id)
+    {
+        var ent = await Db.SavedGames.FindAsync(id);
+        if (ent != null)
+        {
+            Db.SavedGames.Remove(ent);
+            await Db.SaveChangesAsync();
+            await LoadAsync();
+            StateHasChanged();
+        }
+    }
+
+    async Task RemovePlayerAsync(int id)
+    {
+        var ent = await Db.SavedPlayers.FindAsync(id);
+        if (ent != null)
+        {
+            Db.SavedPlayers.Remove(ent);
+            await Db.SaveChangesAsync();
+            await LoadAsync();
+            StateHasChanged();
+        }
+    }
+
+    static string GetMetaValue(Dictionary<string, object>? meta, string key)
+    {
+        if (meta == null) return string.Empty;
+        if (!meta.TryGetValue(key, out var v) || v == null) return string.Empty;
+        return v.ToString() ?? string.Empty;
+    }
+
+    HashSet<int> expandedPlayers = new();
+
+    void TogglePlayerExpand(int id)
+    {
+        if (expandedPlayers.Contains(id)) expandedPlayers.Remove(id);
+        else expandedPlayers.Add(id);
+    }
+ }

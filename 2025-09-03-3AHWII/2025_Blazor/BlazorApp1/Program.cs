@@ -1,4 +1,7 @@
 using BlazorApp1.Components;
+using BlazorApp1.Data;
+using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +11,22 @@ builder.Services.AddRazorComponents()
 // Register a shared HttpClient for server-side API calls
 builder.Services.AddHttpClient();
 
+// Configure EF Core with SQLite database in Data/saveditems.db
+var contentRoot = builder.Environment.ContentRootPath;
+var dataDir = Path.Combine(contentRoot, "Data");
+if (!Directory.Exists(dataDir)) Directory.CreateDirectory(dataDir);
+var dbPath = Path.Combine(dataDir, "saveditems.db");
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite($"Data Source={dbPath}"));
+
 var app = builder.Build();
+
+// Ensure database is created
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.EnsureCreated();
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
