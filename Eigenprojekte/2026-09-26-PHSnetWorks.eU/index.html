@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PHSnetWorks.eU</title>
+  <meta name="description" content="PHSnetWorks.eU - connect everyone and everything!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top">
+      <span class="brand-mark">P</span>
+      <span>
+        <strong>PHSnetWorks.eU</strong>
+        <small>connect everyone and everything!</small>
+      </span>
+    </a>
+    <div class="header-actions">
+      <button class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Wechsle zu hellem Design">
+        <span class="theme-switch__label">Dark mode</span>
+        <span class="theme-switch__track" aria-hidden="true">
+          <span class="theme-switch__thumb"></span>
+        </span>
+      </button>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menü</button>
+    </div>
+    <nav id="site-nav" class="nav">
+      <a href="#news">News</a>
+      <a href="#impressum">Impressum</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">PHSnetWorks.eU</p>
+        <h1>Eine klare, moderne Präsenz für Vernetzung, IT und Unternehmensberatung.</h1>
+        <p class="lead">
+          Die neue Seite bündelt die aktuell sichtbaren Inhalte der bestehenden Website in einer
+          ruhigen, zeitgemäßen Struktur mit direktem Zugriff auf News und Impressum.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#impressum">Zum Impressum</a>
+          <a class="button secondary" href="#news">Zu den News</a>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <span class="card-label">Kurzprofil</span>
+        <h2>connect everyone and everything!</h2>
+        <p>Die Leitidee der bestehenden Seite bleibt erhalten, nur besser inszeniert.</p>
+      </aside>
+    </section>
+
+    <section class="panel" id="news">
+      <div class="section-heading">
+        <p class="eyebrow">Beiträge</p>
+        <h2>News</h2>
+      </div>
+      <div class="news-empty">
+        <strong>Keine Kategorien</strong>
+        <p>Auf der aktuellen Website ist in diesem Bereich kein Beitrag sichtbar.</p>
+      </div>
+    </section>
+
+    <section class="panel grid" id="impressum">
+      <div class="section-heading">
+        <p class="eyebrow">Rechtliches</p>
+        <h2>Impressum</h2>
+      </div>
+      <div class="impressum-grid">
+        <article class="info-card">
+          <h3>Firma</h3>
+          <p>PHSnetWorks.eU</p>
+          <p>Inhaber: Dipl. Ing. (FH) Philipp Sima, MSc.</p>
+        </article>
+        <article class="info-card">
+          <h3>Kontakt</h3>
+          <p>Bahngasse 22, A-2514 Traiskirchen</p>
+          <p>Telefon: +43 (0)699 81387805</p>
+          <p>E-Mail: office@phsnet.at</p>
+        </article>
+        <article class="info-card">
+          <h3>Unternehmensdaten</h3>
+          <p>Firmenbuchnummer: 434671y</p>
+          <p>Firmenbuchgericht: Landesgericht Wiener Neustadt</p>
+          <p>Kammer: Wirtschaftskammer Österreich</p>
+          <p>Fachverband: UBIT – Unternehmensberatung und IT, Elektro- und Elektronikindustrie</p>
+          <p>Umsatzsteuer: ATU70088335</p>
+        </article>
+        <article class="info-card" id="kontakt">
+          <h3>Bankverbindung</h3>
+          <p>Kontoinhaber: PHSnetWorks.eU</p>
+          <p>IBAN: AT25****818</p>
+          <p>BIC: SPBDAT21XXX</p>
+          <p>Bank: Sparkasse Baden</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Copyright © PHSnetWorks.eU 2026</p>
+    <!-- <p class="footer-note">Powered by BestWebSoft team and WordPress</p> -->
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
