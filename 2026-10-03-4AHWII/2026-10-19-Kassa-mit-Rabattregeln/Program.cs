@@ -6,12 +6,25 @@ namespace KassaRechner
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Bitte rechnungszeile im Format ProduktName;Preis;Menge eingeben:");
-            string produkt = Console.ReadLine();
-            Console.WriteLine("Eingegebenes Produkt: " + produkt);
+            string produkt;
+            do
+            {
+                Console.WriteLine("Bitte rechnungszeile im Format ProduktName;Preis;Menge eingeben oder Lehrzeile für 'Weiter':");
+                produkt = Console.ReadLine();
+                if (produkt == "") { break; }
+                Console.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+                Console.WriteLine("Eingegebenes Produkt: " + produkt);
+                Console.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+
+            } while (produkt != "");
+
             Console.WriteLine("Gib eine Rabattregel ein: ");
             string rabattRegel = Console.ReadLine();
+            Console.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
             Console.WriteLine("Rabattregel: " + rabattRegel);
+            Console.WriteLine("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+
+
         }
 
     };
@@ -31,6 +44,7 @@ namespace KassaRechner
         public decimal Summe()
         {
             //implement
+            return;
         }
 
     }
@@ -69,10 +83,14 @@ namespace KassaRechner
         public string Beschreibung()
         {
             //implement
+            return;
+
         }
-        public decimal BerechneRabatt()
+        public decimal BerechneRabatt(List<Position> positionen)
         {
             //implement
+            return;
+
         }
     };
 
@@ -81,10 +99,14 @@ namespace KassaRechner
         public string Beschreibung()
         {
             //implement
+            return;
+
         }
-        public decimal BerechneRabatt()
+        public decimal BerechneRabatt(List<Position> positionen)
         {
             //implement
+            return;
+
         }
     };
 
@@ -93,10 +115,14 @@ namespace KassaRechner
         public string Beschreibung()
         {
             //implement
+            return;
+
         }
-        public decimal BerechneRabatt()
+        public decimal BerechneRabatt(List<Position> positionen)
         {
             //implement
+            return;
+
         }
     };
 
@@ -105,16 +131,14 @@ namespace KassaRechner
         public string Beschreibung()
         {
             //implement
+            return;
+
         }
-        public decimal BerechneRabatt()
+        public decimal BerechneRabatt(List<Position> positionen)
         {
             //implement
+            return;
+
         }
     };
-
-
-
-
-
-
 }
